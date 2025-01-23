@@ -1,11 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <title>Pottery VR</title>
+    <script>
+        //create a component that will represent the pottery piece
+        AFRAME.registerComponent("pottery-modification", {
+            schema: {
+                radiusTop: {type: "number", default: 0.5},
+                radiusBottom: {type: "number", default: 0.5},
+                height: {type: "number", default: 1},
+                thickness: {type: "number", default: 0.02}
+            },
+            init: function () {
+                var data = this.data    //get the component properties and their values
+                var el = this.el        //get the element the component is attached to
+                
+
+                
+            }
+        })
+    </script>
 </head>
 <body>
-    Hello World
+    <input type="range" min="1" max="10" step="1" value="1" style="width: 200px"/>
+    <a-scene>
+        <a-entity cursor="rayOrigin: mouse" raycaster="far:20; interval:200; objects:.interactive"></a-entity>
+        <a-entity>
+            <a-cone radius-bottom="0.5"
+                radius-top=".5"
+                height="1.4"
+                open-ended="true">
+            </a-cone>
+            <a-cone radius-bottom="0.4"
+                    radius-top="0.4"
+                    height="1.4"
+                    material="side:double"
+                    open-ended="true">
+            </a-cone>
+            <a-ring rotation="90 0 0"
+                    material="side:double"
+                    radius-outer="0.5"
+                    radius-inner="0.4"
+                    segments-theta="36"
+                    position="0 0.7 0">
+            </a-ring>
+            <a-ring rotation="90 0 0"
+                    material="side:double"
+                    radius-outer="0.5"
+                    radius-inner="0.4"
+                    segments-theta="36"
+                    position="0 -0.7 0">
+            </a-ring>
+        </a-entity>
+        
+
+    </a-scene>
 </body>
 </html>
