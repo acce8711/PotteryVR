@@ -1,0 +1,3 @@
+challenges faced:
+figuring out how to scale the pottery piece without scaling it in  both sides
+    -just scale the empty parent

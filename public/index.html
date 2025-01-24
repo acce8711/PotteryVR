@@ -4,7 +4,9 @@
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
     <title>Pottery VR</title>
     <link rel="stylesheet" href="css/styles.css"/>
+    <script src="scripts/potteryPieceModification.js"></script>
     <script>
+        
         //create a component that will represent the pottery piece
         AFRAME.registerComponent("pottery-modification", {
             schema: {
@@ -45,42 +47,28 @@
             }
         })
 
-        const adjustSlider = function(event) {
-            const value = event.target.value
-            console.log(value)
         
-            //add animation component
-            const outerCone = document.querySelector("#outer-cone");
-            outerConeTopRadius = 0.5 + parseFloat(value);
-            outerCone.setAttribute("radius-top", outerConeTopRadius);      //update the bottom radius of the outer cone
-
-            const innerCone = document.querySelector("#inner-cone");
-            innerConeTopRadius = 0.4 + parseFloat(value);
-            innerCone.setAttribute("radius-top", innerConeTopRadius);
-            
-            const topRing = document.querySelector("#top-ring");
-            topRing.setAttribute("radius-inner", innerConeTopRadius);
-            topRing.setAttribute("radius-outer", outerConeTopRadius);
-
-        }
-
        
     </script>
 </head>
 <body>
     <div id="sliders-overlay">
-        <input id="slider1" type="range" min="0" max="1" step="0.01" value="0" style="width: 200px" oninput="adjustSlider(event)"/>
+        <input onclick="printHello()"/>
+        <input id="slider1" type="range" min="0" max="1" step="0.01" value="0" style="width: 200px" oninput="taperTop(event)"/>
+        <input id="slider2" type="range" min="0" max="1" step="0.01" value="0" style="width: 200px" oninput="taperBottom(event)"/>
+        <input id="slider3" type="range" min="0" max="1" step="0.01" value="0" style="width: 200px" oninput="adjustHeight(event)"/>
     </div>
     
     <a-scene>
         <a-entity camera wasd-controls look-controls position="0 1.6 0">
             <a-entity cursor="rayOrigin:mouse;" raycaster="far:20; interval:200; objects:.interactive"></a-entity>
         </a-entity>
-        <a-entity position="0 0.5 -4">
+        <a-entity id="pottery-piece" position="0 0 -4" scale="1 1 1">
             <a-cone id="outer-cone"
                 radius-bottom="0.5"
                 radius-top=".5"
                 height="1.4"
+                position="0 0.7 0"
                 open-ended="true"
                 animation="property: radius-bottom; to: 1 8 -10; dur: 2000; startEvents: click">
             </a-cone>
@@ -88,6 +76,7 @@
                     radius-bottom="0.4"
                     radius-top="0.4"
                     height="1.4"
+                    position="0 0.7 0"
                     material="side:double"
                     open-ended="true">
             </a-cone>
@@ -97,7 +86,7 @@
                     radius-outer="0.5"
                     radius-inner="0.4"
                     segments-theta="36"
-                    position="0 0.7 0">
+                    position="0 1.4 0">
             </a-ring>
             <a-ring id="bottom-ring"
                     rotation="90 0 0"
@@ -105,7 +94,7 @@
                     radius-outer="0.5"
                     radius-inner="0.4"
                     segments-theta="36"
-                    position="0 -0.7 0">
+                    position="0 0 0">
             </a-ring>
             <!-- interaction handles -->
             <!-- <a-ring id="bottom ring"
