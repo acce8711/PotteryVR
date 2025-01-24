@@ -22,36 +22,67 @@
             }
         })
 
-        const adjustSlider = function() {
-            console.log("slider moved")
+        AFRAME.registerComponent("radius-slider", {
+            schema: {
+                dragging: {type: "boolean", default: "false"}
+            },
+            init: function() {
+                console.log(this.data)
+
+                //listen for when the radius changes
+                this.el.addEventListener("mousedown", function(event) {
+                    console.log(event)
+                    event.srcElement.setAttribute("radius-slider", "dragging: true")
+                })
+
+                this.el.addEventListener("mouseup", function(event) {
+                    console.log(event)
+                    event.srcElement.setAttribute("radius-slider", "dragging: false")
+                })
+            },
+            update: function(oldData) {
+                console.log(this.data)
+            }
+        })
+
+        const adjustSlider = function(event) {
+            const value = event.target.value
+            console.log(value)
+        
+            //add animation component
+            const outerCone = document.querySelector("#outer-cone");
+            outerConeTopRadius = 0.5 + parseFloat(value);
+            outerCone.setAttribute("radius-top", outerConeTopRadius);      //update the bottom radius of the outer cone
+
+            const innerCone = document.querySelector("#inner-cone");
+            innerConeTopRadius = 0.4 + parseFloat(value);
+            innerCone.setAttribute("radius-top", innerConeTopRadius);
             
-
-            const innerCone = document.querySelector
-            console.log(cone.getAttribute("radius-bottom"))
-
-            const outerCone = document.querySelector("#outer-cone")
-            outerCone.setAttribute("radius-bottom", "0.6")       //update the bottom radius of the outer cone
-
-            const innerCode = document.querySelector("#")
-            cone.setAttribute("radius-bottom", "0.6")       //update the bottom radius of the outer cone
-
+            const topRing = document.querySelector("#top-ring");
+            topRing.setAttribute("radius-inner", innerConeTopRadius);
+            topRing.setAttribute("radius-outer", outerConeTopRadius);
 
         }
+
+       
     </script>
 </head>
 <body>
     <div id="sliders-overlay">
-        <input id="slider1" type="range" min="1" max="10" step="1" value="1" style="width: 200px" oninput="adjustSlider()"/>
+        <input id="slider1" type="range" min="0" max="1" step="0.01" value="0" style="width: 200px" oninput="adjustSlider(event)"/>
     </div>
     
     <a-scene>
-        <a-entity cursor="rayOrigin: mouse" raycaster="far:20; interval:200; objects:.interactive"></a-entity>
-        <a-entity>
+        <a-entity camera wasd-controls look-controls position="0 1.6 0">
+            <a-entity cursor="rayOrigin:mouse;" raycaster="far:20; interval:200; objects:.interactive"></a-entity>
+        </a-entity>
+        <a-entity position="0 0.5 -4">
             <a-cone id="outer-cone"
                 radius-bottom="0.5"
                 radius-top=".5"
                 height="1.4"
-                open-ended="true">
+                open-ended="true"
+                animation="property: radius-bottom; to: 1 8 -10; dur: 2000; startEvents: click">
             </a-cone>
             <a-cone id="inner-cone"
                     radius-bottom="0.4"
@@ -76,6 +107,21 @@
                     segments-theta="36"
                     position="0 -0.7 0">
             </a-ring>
+            <!-- interaction handles -->
+            <!-- <a-ring id="bottom ring"
+                    position="0 -0.5 0"
+                    rotation="90 0 0 "
+                    radius-outer="0.7"
+                    radius-inner="0.6"
+                    material="side: double; color: green">
+                <a-sphere class="interactive"
+                          id="sphere"
+                          position="1 0 0"
+                          scale="0.2 0.2 0.2"
+                          material="color: green"
+                          radius-slider>
+                </a-sphere>
+            </a-ring> -->
         </a-entity>
         
 
