@@ -3,6 +3,7 @@
 <head>
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
     <title>Pottery VR</title>
+    <link rel="stylesheet" href="css/styles.css"/>
     <script>
         //create a component that will represent the pottery piece
         AFRAME.registerComponent("pottery-modification", {
@@ -20,32 +21,55 @@
                 
             }
         })
+
+        const adjustSlider = function() {
+            console.log("slider moved")
+            
+
+            const innerCone = document.querySelector
+            console.log(cone.getAttribute("radius-bottom"))
+
+            const outerCone = document.querySelector("#outer-cone")
+            outerCone.setAttribute("radius-bottom", "0.6")       //update the bottom radius of the outer cone
+
+            const innerCode = document.querySelector("#")
+            cone.setAttribute("radius-bottom", "0.6")       //update the bottom radius of the outer cone
+
+
+        }
     </script>
 </head>
 <body>
-    <input type="range" min="1" max="10" step="1" value="1" style="width: 200px"/>
+    <div id="sliders-overlay">
+        <input id="slider1" type="range" min="1" max="10" step="1" value="1" style="width: 200px" oninput="adjustSlider()"/>
+    </div>
+    
     <a-scene>
         <a-entity cursor="rayOrigin: mouse" raycaster="far:20; interval:200; objects:.interactive"></a-entity>
         <a-entity>
-            <a-cone radius-bottom="0.5"
+            <a-cone id="outer-cone"
+                radius-bottom="0.5"
                 radius-top=".5"
                 height="1.4"
                 open-ended="true">
             </a-cone>
-            <a-cone radius-bottom="0.4"
+            <a-cone id="inner-cone"
+                    radius-bottom="0.4"
                     radius-top="0.4"
                     height="1.4"
                     material="side:double"
                     open-ended="true">
             </a-cone>
-            <a-ring rotation="90 0 0"
+            <a-ring id="top-ring"
+                    rotation="90 0 0"
                     material="side:double"
                     radius-outer="0.5"
                     radius-inner="0.4"
                     segments-theta="36"
                     position="0 0.7 0">
             </a-ring>
-            <a-ring rotation="90 0 0"
+            <a-ring id="bottom-ring"
+                    rotation="90 0 0"
                     material="side:double"
                     radius-outer="0.5"
                     radius-inner="0.4"
