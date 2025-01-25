@@ -1,3 +1,9 @@
 challenges faced:
 figuring out how to scale the pottery piece without scaling it in  both sides
     -just scale the empty parent
+
+
+what went well:
+-accessing component properties through arrow functions
+-when a property for a component that I needed existed (ex: camera zoom)
+
