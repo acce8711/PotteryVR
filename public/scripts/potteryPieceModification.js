@@ -28,8 +28,8 @@ function adjustHeight(event) {
     const value = event.target.value;
 
     const shape = document.querySelector("#pottery-piece");
-    const shapeHeight = POTTERY_PIECE_Y_SCALE + parseFloat(value)
-    shape.setAttribute("scale", `1 ${shapeHeight} 1`)
+    const shapeHeight = POTTERY_PIECE_Y_SCALE + parseFloat(value);
+    shape.object3D.scale.set(1, shapeHeight, 1);
 }
 
 //function to update the cone and circle radius of the pottery piece
@@ -39,7 +39,7 @@ const setRadius = function(shapeID, initialRadius, sliderRadius, componentName) 
     shape.setAttribute(componentName, radius);
 }
 
-//function to update the ring radius
+//function to update the ring radiuss
 const setRingRadius = function(shapeID, initialInnerRadius, initialOuterRadius, sliderRadius) {
     const shape = document.querySelector(shapeID);
     const innerRadius = initialInnerRadius + parseFloat(sliderRadius);
