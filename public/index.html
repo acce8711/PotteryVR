@@ -80,14 +80,18 @@
                         animation="property: rotation; loop:true; dur:1000; easing:linear; enabled: false">
             </a-cylinder>
         </a-entity>
-        <a-entity id="pottery-piece" position="0 0.11 -4" scale="1 1 1">
+        <a-box class="interactive"
+                position="4 0 -4"
+                material="color: #8a7969"
+                create-pottery>
+        </a-box>
+        <!-- <a-entity id="pottery-piece" position="0 0.11 -4" scale="1 1 1">
             <a-cone id="outer-cone"
                 radius-bottom="0.5"
                 radius-top=".5"
                 height="1.4"
                 position="0 0.7 0"
-                open-ended="true"
-                animation="property: radius-bottom; to: 1 8 -10; dur: 2000; startEvents: click">
+                open-ended="true">
             </a-cone>
             <a-cone id="inner-cone"
                     radius-bottom="0.4"
@@ -113,8 +117,7 @@
                     segments-theta="36"
                     position="0 0 0">
             </a-ring>
-            <!-- interaction handles -->
-            <!-- <a-ring id="bottom ring"
+            <a-ring id="bottom ring"
                     position="0 -0.5 0"
                     rotation="90 0 0 "
                     radius-outer="0.7"
@@ -127,8 +130,8 @@
                           material="color: green"
                           radius-slider>
                 </a-sphere>
-            </a-ring> -->
-        </a-entity>
+            </a-ring>
+        </a-entity> -->
         
 
     </a-scene>
