@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="css/styles.css"/>
     <script src="scripts/potteryPieceModification.js"></script>
     <script src="scripts/script.js"></script>
+    <script src="scripts/constants.js"></script>
+    <script src="scripts/create-pottery.js"></script>
     <script>
         
         //create a component that will represent the pottery piece
@@ -65,73 +67,75 @@
         <a-entity camera wasd-controls look-controls position="0 1.6 0">
             <a-entity cursor="rayOrigin:mouse;" raycaster="far:20; interval:200; objects:.interactive"></a-entity>
         </a-entity>
-        <a-cylinder class="interactive" position="-4 0 -4" scale="1 1 1" color="red" wheel-functionality
-        ></a-cylinder>
-        <a-entity id="wheel" position="0 0 -4">
+        <a-cylinder id="button"class="interactive" position="-4 0 -4" scale="1 1 1" color="red" wheel-functionality></a-cylinder>
+        <a-entity position="0 0 -4">
             <a-cylinder position="0 0.3 0"
                         scale="1.9 0.6 1.9"
                         material="color: blue; side:double"
                         open-ended="true">
             </a-cylinder>
-            <a-cylinder id="wheel-spin"
-                        position="0 0.05 0"
-                        scale="1.7 0.1 1.7"
-                        material="src: #test"
-                        animation="property: rotation; loop:true; dur:1000; easing:linear; enabled: false">
-            </a-cylinder>
+            <a-entity id="wheel-spin"
+                      animation="property: rotation; loop:true; dur:1000; easing:linear; enabled: false">
+                        <a-cylinder
+                            position="0 0.05 0"
+                            scale="1.7 0.1 1.7"
+                            material="src: #test">
+                        </a-cylinder>
+                        <!-- <a-entity id="pottery-piece" position="0 0.11 -4" scale="1 1 1">
+                            <a-cone id="outer-cone"
+                                radius-bottom="0.5"
+                                radius-top=".5"
+                                height="1.4"
+                                position="0 0.7 0"
+                                open-ended="true">
+                            </a-cone>
+                            <a-cone id="inner-cone"
+                                    radius-bottom="0.4"
+                                    radius-top="0.4"
+                                    height="1.4"
+                                    position="0 0.7 0"
+                                    material="side:double"
+                                    open-ended="true">
+                            </a-cone>
+                            <a-ring id="top-ring"
+                                    rotation="90 0 0"
+                                    material="side:double"
+                                    radius-outer="0.5"
+                                    radius-inner="0.4"
+                                    segments-theta="36"
+                                    position="0 1.4 0">
+                            </a-ring>
+                            <a-ring id="bottom-ring"
+                                    rotation="90 0 0"
+                                    material="side:double"
+                                    radius-outer="0.5"
+                                    radius-inner="0.4"
+                                    segments-theta="36"
+                                    position="0 0 0">
+                            </a-ring>
+                            <a-ring id="bottom ring"
+                                    position="0 -0.5 0"
+                                    rotation="90 0 0 "
+                                    radius-outer="0.7"
+                                    radius-inner="0.6"
+                                    material="side: double; color: green">
+                                <a-sphere class="interactive"
+                                          id="sphere"
+                                          position="1 0 0"
+                                          scale="0.2 0.2 0.2"
+                                          material="color: green"
+                                          radius-slider>
+                                </a-sphere>
+                            </a-ring>
+                        </a-entity> -->
+            </a-entity>
         </a-entity>
         <a-box class="interactive"
                 position="4 0 -4"
                 material="color: #8a7969"
                 create-pottery>
         </a-box>
-        <!-- <a-entity id="pottery-piece" position="0 0.11 -4" scale="1 1 1">
-            <a-cone id="outer-cone"
-                radius-bottom="0.5"
-                radius-top=".5"
-                height="1.4"
-                position="0 0.7 0"
-                open-ended="true">
-            </a-cone>
-            <a-cone id="inner-cone"
-                    radius-bottom="0.4"
-                    radius-top="0.4"
-                    height="1.4"
-                    position="0 0.7 0"
-                    material="side:double"
-                    open-ended="true">
-            </a-cone>
-            <a-ring id="top-ring"
-                    rotation="90 0 0"
-                    material="side:double"
-                    radius-outer="0.5"
-                    radius-inner="0.4"
-                    segments-theta="36"
-                    position="0 1.4 0">
-            </a-ring>
-            <a-ring id="bottom-ring"
-                    rotation="90 0 0"
-                    material="side:double"
-                    radius-outer="0.5"
-                    radius-inner="0.4"
-                    segments-theta="36"
-                    position="0 0 0">
-            </a-ring>
-            <a-ring id="bottom ring"
-                    position="0 -0.5 0"
-                    rotation="90 0 0 "
-                    radius-outer="0.7"
-                    radius-inner="0.6"
-                    material="side: double; color: green">
-                <a-sphere class="interactive"
-                          id="sphere"
-                          position="1 0 0"
-                          scale="0.2 0.2 0.2"
-                          material="color: green"
-                          radius-slider>
-                </a-sphere>
-            </a-ring>
-        </a-entity> -->
+        
         
 
     </a-scene>
