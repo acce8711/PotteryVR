@@ -18,7 +18,7 @@ AFRAME.registerComponent("create-pottery", {
             //hmm is this a bad practice?
             this.data.enabled = false;
             const button = document.querySelector("#button");
-            button.setAttribute("wheel-functionality", "enabled: true")
+            button.setAttribute("wheel-spin", "enabled: true")
         }
       })
     },
@@ -32,45 +32,57 @@ const createPotteryPieceEntity = function(){
     const potteryPieceEl = document.createElement("a-entity");
     potteryPieceEl.object3D.position.set(0, WHEEL_HEIGHT + Y_OFFSET, 0);
     potteryPieceEl.id = "pottery-piece"
+    potteryPieceEl.setAttribute("pickup-pottery", "");
 
     //create outer cone entity
     const outerConeEl = document.createElement("a-cone");
-    outerConeEl.id = "outer-cone";
     outerConeEl.object3D.position.set(0, CONE_HEIGHT/2, 0);
     outerConeEl.setAttribute("height", CONE_HEIGHT);
     outerConeEl.setAttribute("radius-bottom", OUTER_CONE_RADIUS);
     outerConeEl.setAttribute("radius-top", OUTER_CONE_RADIUS);
     outerConeEl.setAttribute("open-ended", true);
+    outerConeEl.id = "outer-cone";
 
     //create inner cone entity
     const innerConeEl = document.createElement("a-cone");
-    innerConeEl.id = "inner-cone";
     innerConeEl.object3D.position.set(0, CONE_HEIGHT/2, 0);
     innerConeEl.setAttribute("height", CONE_HEIGHT);
     innerConeEl.setAttribute("radius-bottom", INNER_CONE_RADIUS);
     innerConeEl.setAttribute("radius-top", INNER_CONE_RADIUS);
     innerConeEl.setAttribute("open-ended", true);
     innerConeEl.setAttribute("material", "side: back");
+    innerConeEl.id = "inner-cone";
 
     //create top ring entity
     const topRingEl = document.createElement("a-ring");
-    topRingEl.id = "top-ring";
     topRingEl.object3D.position.set(0, CONE_HEIGHT, 0);
     topRingEl.object3D.rotation.x = THREE.MathUtils.degToRad(90);
     topRingEl.setAttribute("radius-outer", OUTER_RING_RADIUS);
     topRingEl.setAttribute("radius-inner", INNER_RING_RADIUS);
     topRingEl.setAttribute("material", "side: back");
     topRingEl.setAttribute("segments-theta", "36");
+    topRingEl.id = "top-ring";
 
     //create bottom circle entity
     const bottomRingEl = document.createElement("a-circle");
-    bottomRingEl.id = "bottom-circle";
     bottomRingEl.object3D.rotation.x = THREE.MathUtils.degToRad(90);
     bottomRingEl.setAttribute("radius", OUTER_RING_RADIUS);
     bottomRingEl.setAttribute("material", "side: double");
+    bottomRingEl.id = "bottom-circle";
+
+    //create invisible cone to handle click events for pottery pick-up
+    const invisibleConeEl = document.createElement("a-cone");
+    invisibleConeEl.object3D.position.set(0, CONE_HEIGHT/2, 0);
+    invisibleConeEl.setAttribute("radius-bottom", OUTER_CONE_RADIUS);
+    invisibleConeEl.setAttribute("radius-top",  OUTER_CONE_RADIUS);
+    invisibleConeEl.setAttribute("material", {transparent: true,
+                                              opacity: 0});
+    invisibleConeEl.id = "invisible-cone";
+    invisibleConeEl.className = "interactive";
+
 
     //append pottery entity shapes to the parent
-    potteryPieceEl.append(outerConeEl, innerConeEl, topRingEl, bottomRingEl);
+    potteryPieceEl.append(outerConeEl, innerConeEl, topRingEl, bottomRingEl, invisibleConeEl);
     //append the pottery parent to the wheel
     wheelEl.appendChild(potteryPieceEl);
 

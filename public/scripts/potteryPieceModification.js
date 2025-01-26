@@ -8,7 +8,9 @@ function taperTop(event) {
     //update the top radius of inner cone 
     setRadius("#inner-cone", INNER_CONE_RADIUS, value, "radius-top"); 
     //update the top ring
-    setRingRadius("#top-ring", INNER_RING_RADIUS, OUTER_RING_RADIUS, value);  
+    setRingRadius("#top-ring", INNER_RING_RADIUS, OUTER_RING_RADIUS, value); 
+    //update the top radius of invisible cone
+    setRadius("#invisible-cone", OUTER_CONE_RADIUS, value, "radius-top");  
 }
 
 //function to taper the bottom of the pottery piece
@@ -21,6 +23,8 @@ function taperBottom(event) {
     setRadius("#inner-cone", INNER_CONE_RADIUS, value, "radius-bottom"); 
     //update the bottom circle
     setRadius("#bottom-circle", CIRCLE_RADIUS, value, "radius");  
+    //update the bottom radius of invisible cone
+    setRadius("#invisible-cone", OUTER_CONE_RADIUS, value, "radius-bottom"); 
 }
 
 //function to adjust the height of the pottery piece

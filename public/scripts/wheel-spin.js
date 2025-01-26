@@ -1,9 +1,5 @@
-
-
-
-
 //component for starting and pausing the wheel spin AND showing or hiding the pottery modification UI
-AFRAME.registerComponent("wheel-functionality", {
+AFRAME.registerComponent("wheel-spin", {
     schema: {
         spinning: {type: "boolean", default: "false"},
         enabled: {type: "boolean", default: "false"}
@@ -28,6 +24,7 @@ AFRAME.registerComponent("wheel-functionality", {
                                                     to: `0 ${destYRotation} 0`})
         
                     potteryModificationUI.style.display = "block"
+                    
                     this.data.spinning = true;
                 }
             //if the wheel is already spinning then stop it AND hide UI for modifying the pottery piece

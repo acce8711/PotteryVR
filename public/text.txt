@@ -6,6 +6,11 @@ having a nice architecture
 challenges with parent/child scaling    
     - scaling piece up
     -had scale values on wheel which was affecting te piece
+parent doesn't detect clicks because it's technically empty?
+used cannon.js for physics but the collision detection did nt have an event for the collision start
+    - resulted in not being able to delete element
+    -switched over to Ammo js which has no documentation but has more collision events
+        -luckily got the needed info from the gitHub
 
 what went well:
 -accessing component properties through arrow functions
