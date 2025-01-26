@@ -120,11 +120,11 @@
 
         <a-entity id="manager" manager></a-entity>
         <a-entity>
-            <a-box id="shelf"
+            <a-entity geometry="primitive: box" id="shelf" class="interactive"
                position="4 0 0"
                scale="6 2 2">
-            </a-box>
-            <a-entity place-piece id="collider1"  obb-collider="size: 1 1 1" position="4 1.6 2"></a-entity>
+            </a-entity>
+            <a-entity id="collider1"  obb-collider="size: 1 1 1" position="4 1.6 2"></a-entity>
             
         </a-entity>
         

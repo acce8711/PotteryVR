@@ -1,32 +1,13 @@
+
 AFRAME.registerComponent("place-piece", {
-    schema: {
-        
-    },
-
+    schema: {},
     init: function () {
-        
-        this.el.addEventListener("obbcollisionstarted", () => {
-            
-            const pickedUp = document.querySelector("#manager").getAttribute("manager").pickedUp;
-            console.log(pickedUp)
-            if(pickedUp)
-            {
-                console.log("place piece");
-                
-                
-            }
+        console.log("componenet added")
+        this.el.addEventListener("click", () => {
+          console.log('can place piece')
+            const potteryPiece = document.querySelector("#pottery-piece");
+            //console.log(this.el.object3D.parent)
+            potteryPiece.object3D.parent = this.el.object3D;
         })
-    },
-
-    update: function () {
-      // Do something when component's data is updated.
-    },
-
-    remove: function () {
-      // Do something the component or its entity is detached.
-    },
-
-    tick: function (time, timeDelta) {
-      // Do something on every scene tick or frame.
     }
 });
