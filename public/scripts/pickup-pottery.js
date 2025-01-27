@@ -22,6 +22,9 @@ AFRAME.registerComponent("pickup-pottery", {
                 //setting pickedUp from the manager component to true
                 const manager = document.querySelector("#manager");
                 manager.setAttribute("manager", "pickedUp: true");
+
+                const piece = document.querySelector("#pottery-piece");
+                piece.setAttribute("throw-piece", "");
             }
         })
     },

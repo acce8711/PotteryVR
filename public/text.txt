@@ -11,6 +11,9 @@ used cannon.js for physics but the collision detection did nt have an event for 
     - resulted in not being able to delete element
     -switched over to Ammo js which has no documentation but has more collision events
         -luckily got the needed info from the gitHub
+gettingt eh direction fo the throw
+    - did relative to camera direction
+    - changed based on the vector betwen the cmaera and the raycasting point
 
 what went well:
 -accessing component properties through arrow functions
