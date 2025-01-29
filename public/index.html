@@ -15,6 +15,7 @@
     <script src="scripts/constants.js"></script>
     <script src="scripts/create-pottery.js"></script>
     <script src="scripts/throw-piece.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-particle-system-component@1.2.0/dist/aframe-particle-system-component.min.js"></script>
     
     <script>
         
@@ -55,32 +56,6 @@
             }
         })
 
-        AFRAME.registerComponent("box-throw", {
-            init: function(){
-                this.el.addEventListener("click", () => {
-                    console.log("throw")
-                    var el = this.el;
-                    el.setAttribute("ammo-body", {type: "dynamic", emitCollisionEvents: true});
-                    el.setAttribute("ammo-shape", "type: box");
-                    const force = new Ammo.btVector3(0, 2, -15);
-                    const pos = new Ammo.btVector3(el.object3D.position.x, el.object3D.position.y, el.object3D.position.z);
-                    el.body.applyImpulse(force, pos);
-                    //el.setAttribute("emitCollisionEvents", "true");
-                    // el.setAttribute("dynamic-body",{shape: "box", angularDamping: 1, mass: 10})
-                    // el.body.applyImpulse(
-                    // /* impulse */        new CANNON.Vec3(0, 20, -100),
-                    // /* world position */ new CANNON.Vec3().copy(el.getAttribute('position'))
-                    // );
-
-                    //add even collision component when the obejc has been thrown
-                    el.setAttribute("destroy-pottery", "");
-                })
-            }
-        }
-        )
-
-       
-
         AFRAME.registerComponent("collide", {
             init: function() {
                 this.el.addEventListener("obbcollisionstarted", () => {
@@ -107,7 +82,7 @@
             <a-asset-item id="clay_model" response-type="arraybuffer" src="assets/models/clay/PBR - Metallic Roughness Alpha-blend.glb"></a-asset-item>
             <img id="test" src="assets/testTexture.png" crossorigin="anonymous"/>
         </a-assets>
-        <a-entity id="camera" camera wasd-controls look-controls position="0 1.6 0">
+        <a-entity id="camera" camera wasd-controls look-controls position="0 1.6 4">
             <a-entity id="collider2"  obb-collider="size: 1 1 1" ></a-entity>
             <a-entity id="cursor" cursor="rayOrigin:mouse;" raycaster="far:20; interval:200; objects:.interactive"></a-entity>
         </a-entity>
@@ -121,6 +96,11 @@
             <a-entity id="collider1"  obb-collider="size: 1 1 1" position="4 1.6 2"></a-entity>
             
         </a-entity>
+
+        <!-- <a-entity rotation="-90 0 0" position="5 5 -10">
+            <a-entity particle-system=" type: 3; dragValue: 1; maxAge: 0.4; size: 1; particleCount: 10;  duration: 0.2; velocitySpread: 2 2 2; accelerationValue:-10, -50, -10; velocityValue: 2 10 2; color: #80663b, #c7ad99; blending: 1; texture: assets/textures/triangle.png"></a-entity>
+        </a-entity> -->
+        
         
         <a-plane id="wall" class="interactive" emitCollisionEvents="true" ammo-body="type: static" ammo-shape="type: box" material="side: double; color: grey;" rotation="0 0 0" scale="20 20 20" position="0 0 -10"></a-plane>
         <a-plane id="plane" class="interactive"  emitCollisionEvents="true" ammo-body="type: static" ammo-shape="type: box" scale="20 20 20" material="color: #989ea6" rotation="-90 0 0"></a-plane>

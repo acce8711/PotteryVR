@@ -1,8 +1,10 @@
 AFRAME.registerComponent("manager", {
     schema: {
-        canCreatePiece: {type: "boolean", default: "true"},
-        canSpinWheel: {type: "boolean", default: "false"},
-        pickedUp: {type: "boolean", default: "false"}
+        canCreate: {type: "boolean", default: "true"},
+        canSpin: {type: "boolean", default: "false"},
+        canPickUp: {type: "boolean", default: "false"},
+        canPlace: {type: "boolean", default: "false"},
+        canThrow: {type: "boolean", default:"false"}
     },
 
     init: function() {
