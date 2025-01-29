@@ -14,4 +14,14 @@ const WHEEL_ROTATION_ANGLE = 360;
 const WHEEL_HEIGHT = 0.1;
 const Y_OFFSET = 0.01;
 
+const FALSE_STRING = "false";
+const TRUE_STRING = "true";
+
+//Manager component schema
+const CAN_CREATE = "canCreate";
+const CAN_SPIN = "canSpin";
+const SPINNING = "spinning";
+const CAN_PICKUP = "canPickUp";
+const CAN_PLACE = "canPlace";
+const CAN_THROW = "canThrow";
 

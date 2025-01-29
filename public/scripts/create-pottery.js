@@ -1,31 +1,27 @@
 
 //component for starting and pausing the wheel spin AND showing or hiding the pottery modification UI
 AFRAME.registerComponent("create-pottery", {
-    schema: {
-        enabled: {type: "boolean", default: "true"}
-    },
 
     init: function () {
       //using an arrow function for the event listener in order to be able to access the component's "this"
       this.el.addEventListener("click", () => {
 
-        const wheel = document.querySelector("#wheel-spin")
-        const potteryModificationUI = document.querySelector("#sliders-overlay")
+        const canCreate = document.querySelector("#manager").getAttribute("manager").canCreate;
 
-        if(this.data.enabled)
+        if(canCreate)
         {
             createPotteryPieceEntity();
-            //hmm is this a bad practice?
-            this.data.enabled = false;
-            const button = document.querySelector("#button");
-            button.setAttribute("wheel-spin", "enabled: true")
+            //once piece is created, the manager value needs to be updated
+            var manager = document.querySelector('[manager]').components.manager;
+            manager.updateSchemaProperty(CAN_CREATE, FALSE_STRING);
+            //console.log(document.querySelector("#manager").getAttribute("manager").canCreate)
         }
       })
     },
 });
 
 const createPotteryPieceEntity = function(){
-    console.log("hello")
+    
     const wheelEl = document.querySelector("#wheel-spin");
 
     //create pottery piece parent entity
@@ -33,6 +29,8 @@ const createPotteryPieceEntity = function(){
     potteryPieceEl.object3D.position.set(0, WHEEL_HEIGHT + Y_OFFSET, 0);
     potteryPieceEl.id = "pottery-piece"
     potteryPieceEl.setAttribute("pickup-pottery", "");
+    potteryPieceEl.setAttribute("throw-piece", "");
+    
 
     //create outer cone entity
     const outerConeEl = document.createElement("a-cone");
@@ -85,5 +83,4 @@ const createPotteryPieceEntity = function(){
     potteryPieceEl.append(outerConeEl, innerConeEl, topRingEl, bottomRingEl, invisibleConeEl);
     //append the pottery parent to the wheel
     wheelEl.appendChild(potteryPieceEl);
-
 }
