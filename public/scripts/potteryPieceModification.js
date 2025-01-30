@@ -32,7 +32,7 @@ function adjustHeight(event) {
     const value = event.target.value;
 
     const shape = document.querySelector("#pottery-piece");
-    const shapeHeight = POTTERY_PIECE_Y_SCALE + parseFloat(value);
+    const shapeHeight = POTTERY_PIECE_Y_SCALE * parseFloat(value);
     shape.object3D.scale.set(1, shapeHeight, 1);
 }
 

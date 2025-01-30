@@ -1,7 +1,7 @@
 AFRAME.registerComponent("manager", {
     schema: {
         canCreate: {type: "boolean", default: "true"},
-        canSpin: {type: "boolean", default: "false"},
+        canSpin: {type: "boolean", default: "true"},
         spinning: {type: "boolean", default: "false"},
         canPickUp: {type: "boolean", default: "false"},
         canPlace: {type: "boolean", default: "false"},
@@ -43,22 +43,25 @@ AFRAME.registerComponent("manager", {
                 {
                     this.el.setAttribute("manager", CAN_THROW, TRUE_STRING);
                     this.el.setAttribute("manager", CAN_PLACE, TRUE_STRING);
-                    this.el.setAttribute("manager", CAN_SPIN, FALSE_STRING);
+                    this.el.setAttribute("manager", CAN_CREATE, FALSE_STRING);
+                    //this.el.setAttribute("manager", CAN_SPIN, FALSE_STRING);
                 }
                 break;
+                //currently error that you can create piece when you have one in hand
             case SPINNING:
                 //if spinning then canPickup needs to be disabled
-                if(propertyValue === TRUE_STRING)
-                    this.el.setAttribute("manager", CAN_PICKUP, FALSE_STRING);
-                //if spinning stopped then canPickup needs to be enabled
-                else
-                    this.el.setAttribute("manager", CAN_PICKUP, TRUE_STRING);
-                break;
+                // if(propertyValue === TRUE_STRING)
+                //     this.el.setAttribute("manager", CAN_PICKUP, FALSE_STRING);
+                // //if spinning stopped then canPickup needs to be enabled
+                // else
+                //     this.el.setAttribute("manager", CAN_PICKUP, TRUE_STRING);
+                // break;
             //if canThrow has been disabled, canCreate needs to be enabled
             case CAN_THROW:
                 if(propertyValue === FALSE_STRING)
                 {
                     this.el.setAttribute("manager", CAN_CREATE, TRUE_STRING);
+                    this.el.setAttribute("manager", CAN_SPIN, TRUE_STRING);
                 }
             default:
                 break;

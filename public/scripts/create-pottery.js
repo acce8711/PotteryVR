@@ -39,6 +39,7 @@ const createPotteryPieceEntity = function(){
     outerConeEl.setAttribute("radius-bottom", OUTER_CONE_RADIUS);
     outerConeEl.setAttribute("radius-top", OUTER_CONE_RADIUS);
     outerConeEl.setAttribute("open-ended", true);
+    outerConeEl.setAttribute("color", "rgb(176,108,68)");
     outerConeEl.id = "outer-cone";
 
     //create inner cone entity
@@ -49,6 +50,7 @@ const createPotteryPieceEntity = function(){
     innerConeEl.setAttribute("radius-top", INNER_CONE_RADIUS);
     innerConeEl.setAttribute("open-ended", true);
     innerConeEl.setAttribute("material", "side: back");
+    innerConeEl.setAttribute("color", "rgb(176,108,68)");
     innerConeEl.id = "inner-cone";
 
     //create top ring entity
@@ -59,6 +61,7 @@ const createPotteryPieceEntity = function(){
     topRingEl.setAttribute("radius-inner", INNER_RING_RADIUS);
     topRingEl.setAttribute("material", "side: back");
     topRingEl.setAttribute("segments-theta", "36");
+    topRingEl.setAttribute("color", "rgb(176,108,68)");
     topRingEl.id = "top-ring";
 
     //create bottom circle entity
@@ -66,6 +69,7 @@ const createPotteryPieceEntity = function(){
     bottomRingEl.object3D.rotation.x = THREE.MathUtils.degToRad(90);
     bottomRingEl.setAttribute("radius", OUTER_RING_RADIUS);
     bottomRingEl.setAttribute("material", "side: double");
+    bottomRingEl.setAttribute("color", "rgb(176,108,68)");
     bottomRingEl.id = "bottom-circle";
 
     //create invisible cone to handle click events for pottery pick-up
