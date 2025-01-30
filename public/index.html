@@ -78,7 +78,7 @@
     <a-scene obb-collider="showColliders: false"  id="scene" physics="driver: ammo; debug: true; debugDrawMode: 1;">
         <!-- loading in the assets -->
         <a-assets timeOut="10000">
-            <a-asset-item id="wheel_model" response-type="arraybuffer" src="assets/models/room.glb"></a-asset-item>
+            <a-asset-item id="room_model" response-type="arraybuffer" src="assets/models/room.glb"></a-asset-item>
             <a-asset-item id="scene_model" response-type="arraybuffer" src="assets/models/furniture.glb"></a-asset-item>
             <a-asset-item id="clay_model" response-type="arraybuffer" src="assets/models/clay.glb"></a-asset-item>
             <a-asset-item id="spinner_model" response-type="arraybuffer" src="assets/models/spinner/spinner.glb"></a-asset-item>
@@ -117,7 +117,7 @@
                     wheel-spin></a-cylinder>
 
 
-        <a-entity id="wheel" position="0 0.01 0" rotation="0 0 0" scale="1.2 1.2 1.2" gltf-model="#wheel_model"></a-entity>
+        <a-entity id="wheel" position="0 0.01 0" rotation="0 0 0" scale="1.2 1.2 1.2" gltf-model="#room_model" emitCollisionEvents="true" ammo-body="type: static" ammo-shape="type: box"></a-entity>
         <a-entity id="furniture" position="0 0.01 0" rotation="0 0 0" scale="1 1 1" gltf-model="#scene_model"></a-entity>
         <a-entity class="interactive" id="clay" create-pottery class="interactive" position="-3.2 0.95 2.4" rotation="0 0 0" gltf-model="#clay_model"></a-entity>
         <a-entity id="wheel-spin"
