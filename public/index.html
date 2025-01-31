@@ -82,22 +82,8 @@
             <a-entity id="cursor" cursor="rayOrigin:mouse;" raycaster="far:20; interval:200; objects:.interactive"></a-entity>
         </a-entity>
 
-        <a-entity id="manager" manager></a-entity>
-        <a-entity>
-            <a-entity geometry="primitive: box; height:1" id="shelf" class="interactive"
-               position="4 0 0"
-               scale="6 1 2">
-            </a-entity>
-            <a-entity id="collider1"  obb-collider="size: 1 1 1" position="4 1.6 2"></a-entity>
-            
-        </a-entity>
-
-        <!-- <a-entity rotation="-90 0 0" position="5 5 -10">
-            <a-entity particle-system=" type: 3; dragValue: 1; maxAge: 0.4; size: 1; particleCount: 10;  duration: 0.2; velocitySpread: 2 2 2; accelerationValue:-10, -50, -10; velocityValue: 2 10 2; color: #80663b, #c7ad99; blending: 1; texture: assets/textures/triangle.png"></a-entity>
-        </a-entity> -->
-        
+        <a-entity id="manager" manager throw-piece></a-entity>
     
-        <a-box class="interactive"  id="boxTest" emitCollisionEvents="true" ammo-body="type: dynamic" ammo-shape="type: box" position="0 2 4"></a-box>
         <a-cylinder id="button" 
                     class="interactive" 
                     position="-3.031 1 3.163" 
@@ -110,33 +96,29 @@
         <a-box scale="1 3 1"></a-box>
         <!-- invisible geometry for colliders -->
         <a-entity id="wall-z-negative" 
-                  geometry="primitive: plane; width:10.5; height: 3.7" 
+                  geometry="primitive: box; width:10.5; height: 3.7" 
                   position="0 1.7 -5.1"
-                  emitCollisionEvents="true" 
                   ammo-body="type: static" 
                   ammo-shape="type: box">
         </a-entity>
-        <!-- <a-entity id="wall-x-negative" 
+        <a-entity id="wall-x-negative" 
                   geometry="primitive: plane; width:10.5; height: 3.7" 
-                  position="-5.25 1.7 0"
+                  position="-5.24 1.7 0"
                   rotation="0 90 0"
-                  emitCollisionEvents="true" 
                   ammo-body="type: static" 
                   ammo-shape="type: box">
-        </a-entity> -->
+        </a-entity>
         <a-entity id="wall-z-positive" 
                   geometry="primitive: plane; width:10.5; height: 3.7" 
-                  position="0 1.7 5.25"
+                  position="0 1.7 5.24"
                   rotation="0 180 0"
-                  emitCollisionEvents="true" 
                   ammo-body="type: static" 
                   ammo-shape="type: box">
         </a-entity>
         <a-entity id="wall-x-positive" 
                   geometry="primitive: plane; width:10.5; height: 3.7" 
-                  position="5.25 1.7 0"
+                  position="5.24 1.7 0"
                   rotation="0 270 0"
-                  emitCollisionEvents="true" 
                   ammo-body="type: static" 
                   ammo-shape="type: box">
         </a-entity>

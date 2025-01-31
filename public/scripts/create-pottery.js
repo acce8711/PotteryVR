@@ -29,8 +29,6 @@ const createPotteryPieceEntity = function(){
     potteryPieceEl.object3D.position.set(0, WHEEL_HEIGHT + Y_OFFSET, 0);
     potteryPieceEl.id = "pottery-piece"
     potteryPieceEl.setAttribute("pickup-pottery", "");
-    potteryPieceEl.setAttribute("throw-piece", "");
-    
 
     //create outer cone entity
     const outerConeEl = document.createElement("a-cone");
@@ -77,6 +75,7 @@ const createPotteryPieceEntity = function(){
     invisibleConeEl.object3D.position.set(0, CONE_HEIGHT/2, 0);
     invisibleConeEl.setAttribute("radius-bottom", OUTER_CONE_RADIUS);
     invisibleConeEl.setAttribute("radius-top",  OUTER_CONE_RADIUS);
+    invisibleConeEl.setAttribute("height", CONE_HEIGHT);
     invisibleConeEl.setAttribute("material", {transparent: true,
                                               opacity: 0});
     invisibleConeEl.id = "invisible-cone";
