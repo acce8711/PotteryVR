@@ -56,13 +56,6 @@
             }
         })
 
-        AFRAME.registerComponent("collide", {
-            init: function() {
-                this.el.addEventListener("obbcollisionstarted", () => {
-                    console.log("we are colliding");
-                })
-            }
-        })
         
        
     </script>
@@ -84,7 +77,7 @@
             <a-asset-item id="spinner_model" response-type="arraybuffer" src="assets/models/spinner/spinner.glb"></a-asset-item>
             <img id="test" src="assets/testTexture.png" crossorigin="anonymous"/>
         </a-assets>
-        <a-entity id="camera" camera wasd-controls look-controls position="0 1.6 4">
+        <a-entity id="camera" camera="zoom: 1" wasd-controls look-controls position="0 1.6 4">
             <a-entity id="collider2"  obb-collider="size: 1 1 1" ></a-entity>
             <a-entity id="cursor" cursor="rayOrigin:mouse;" raycaster="far:20; interval:200; objects:.interactive"></a-entity>
         </a-entity>
@@ -103,10 +96,8 @@
             <a-entity particle-system=" type: 3; dragValue: 1; maxAge: 0.4; size: 1; particleCount: 10;  duration: 0.2; velocitySpread: 2 2 2; accelerationValue:-10, -50, -10; velocityValue: 2 10 2; color: #80663b, #c7ad99; blending: 1; texture: assets/textures/triangle.png"></a-entity>
         </a-entity> -->
         
-        
-        <a-plane id="wall" class="interactive" emitCollisionEvents="true" ammo-body="type: static" ammo-shape="type: box" material="side: double; color: grey;" rotation="0 0 0" scale="20 20 20" position="0 0 -10"></a-plane>
-        <a-plane id="plane" class="interactive"  emitCollisionEvents="true" ammo-body="type: static" ammo-shape="type: box" scale="20 20 20" material="color: #989ea6" rotation="-90 0 0"></a-plane>
-        <a-box class="interactive"  id="boxTest" box-throw position="0 2 4"></a-box>
+    
+        <a-box class="interactive"  id="boxTest" emitCollisionEvents="true" ammo-body="type: dynamic" ammo-shape="type: box" position="0 2 4"></a-box>
         <a-cylinder id="button" 
                     class="interactive" 
                     position="-3.031 1 3.163" 
@@ -116,9 +107,53 @@
                     animation="property: position; from:-3.031 0.95 3.163; to:-3.031 1 3.163; dur:200; startEvents: click;"
                     wheel-spin></a-cylinder>
 
-
-        <a-entity id="wheel" position="0 0.01 0" rotation="0 0 0" scale="1.2 1.2 1.2" gltf-model="#room_model" emitCollisionEvents="true" ammo-body="type: static" ammo-shape="type: box"></a-entity>
-        <a-entity id="furniture" position="0 0.01 0" rotation="0 0 0" scale="1 1 1" gltf-model="#scene_model"></a-entity>
+        <a-box scale="1 3 1"></a-box>
+        <!-- invisible geometry for colliders -->
+        <a-entity id="wall-z-negative" 
+                  class="interactive" 
+                  geometry="primitive: plane; width:10.5; height: 3.7" 
+                  position="0 1.7 -5.1"
+                  emitCollisionEvents="true" 
+                  ammo-body="type: static" 
+                  ammo-shape="type: box">
+        </a-entity>
+        <a-entity id="wall-x-negative" 
+                  class="interactive" 
+                  geometry="primitive: plane; width:10.5; height: 3.7" 
+                  position="-5.25 1.7 0"
+                  rotation="0 90 0"
+                  emitCollisionEvents="true" 
+                  ammo-body="type: static" 
+                  ammo-shape="type: box">
+        </a-entity>
+        <a-entity id="wall-z-positive" 
+                  class="interactive" 
+                  geometry="primitive: plane; width:10.5; height: 3.7" 
+                  position="0 1.7 5.25"
+                  rotation="0 180 0"
+                  emitCollisionEvents="true" 
+                  ammo-body="type: static" 
+                  ammo-shape="type: box">
+        </a-entity>
+        <a-entity id="wall-x-positive" 
+                  class="interactive" 
+                  geometry="primitive: plane; width:10.5; height: 3.7" 
+                  position="5.25 1.7 0"
+                  rotation="0 270 0"
+                  emitCollisionEvents="true" 
+                  ammo-body="type: static" 
+                  ammo-shape="type: box">
+        </a-entity>
+        <a-entity id="floor" 
+                  geometry="primitive: plane; width:10.5; height: 10.5" 
+                  position="0 0.011 0"
+                  rotation="-90 0 0"
+                  emitCollisionEvents="true" 
+                  ammo-body="type: static" 
+                  ammo-shape="type: box">
+        </a-entity>
+        <a-entity id="room" position="0 0.01 0" rotation="0 0 0" scale="1.2 1.2 1.2" gltf-model="#room_model"></a-entity>
+        <a-entity class="interactive" id="furniture" position="0 0.01 0" rotation="0 0 0" scale="1 1 1" gltf-model="#scene_model"></a-entity>
         <a-entity class="interactive" id="clay" create-pottery class="interactive" position="-3.2 0.95 2.4" rotation="0 0 0" gltf-model="#clay_model"></a-entity>
         <a-entity id="wheel-spin"
                   animation="property: rotation; loop:true; dur:1000; easing:linear; enabled: false" 

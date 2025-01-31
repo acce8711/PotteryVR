@@ -1,46 +1,53 @@
 AFRAME.registerComponent("throw-piece", {
     init: function(){
-        const plane = document.querySelector("#wall")
-        plane.addEventListener("click", (event) => {
-
-            const canThrow = document.querySelector("#manager").getAttribute("manager").canThrow;
-
-            if(canThrow)
-            {
-                const el = this.el;
-                var worldPosition = new THREE.Vector3();
-                this.el.object3D.getWorldPosition(worldPosition);
-                //const elPos = el.object3D.position;
-            
-                console.log(el)
-                //get the cursor intersection point
-                const cursorPos = event.detail.intersection.point;
-                var worldPosition = new THREE.Vector3();
-                this.el.object3D.getWorldPosition(worldPosition);
-
-                //create a vector between the camera and the cursor position (target)
-                //this vector will represent the target throw direction
-                const direction = new THREE.Vector3(cursorPos.x - worldPosition.x, cursorPos.y - worldPosition.y, cursorPos.z - worldPosition.z);
-
-                //add dynamic body component 
-                el.setAttribute("ammo-body", {type: "dynamic", emitCollisionEvents: true});
-                el.setAttribute("ammo-shape", {type: "sphere", fit: "manual", sphereRadius: 0.4});
-
-                //throw the piece in the direction of the cursor
-                const x = direction.x * 2;
-                const z = direction.z * 2;
-                const y = direction.y * 2;
-                const force = new Ammo.btVector3(x, y, z);
-                const pos = new Ammo.btVector3(worldPosition.x, worldPosition.y, worldPosition.z);
-                el.body.applyImpulse(force, pos);
-                
-                //add event collision component when the pottery piece has been thrown
-                el.setAttribute("destroy-pottery", "");
-            }
+        CONST 
+        const plane = document.querySelector("#wall-z-negative")
+        plane.addEventListener("click", () => {
+            throwPiece();
+           
         })
     }
 }
 )
+
+const throwPiece = function()
+{
+    console.log("throw")
+    const canThrow = document.querySelector("#manager").getAttribute("manager").canThrow;
+
+    if(canThrow)
+    {
+        const el = this.el;
+        var worldPosition = new THREE.Vector3();
+        this.el.object3D.getWorldPosition(worldPosition);
+        //const elPos = el.object3D.position;
+    
+        console.log(el)
+        //get the cursor intersection point
+        const cursorPos = event.detail.intersection.point;
+        var worldPosition = new THREE.Vector3();
+        this.el.object3D.getWorldPosition(worldPosition);
+
+        //create a vector between the camera and the cursor position (target)
+        //this vector will represent the target throw direction
+        const direction = new THREE.Vector3(cursorPos.x - worldPosition.x, cursorPos.y - worldPosition.y, cursorPos.z - worldPosition.z);
+
+        //add dynamic body component 
+        el.setAttribute("ammo-body", {type: "dynamic", emitCollisionEvents: true});
+        el.setAttribute("ammo-shape", {type: "sphere", fit: "manual", sphereRadius: 0.4});
+
+        //throw the piece in the direction of the cursor
+        const x = direction.x * 2;
+        const z = direction.z * 2;
+        const y = direction.y * 2;
+        const force = new Ammo.btVector3(x, y, z);
+        const pos = new Ammo.btVector3(worldPosition.x, worldPosition.y, worldPosition.z);
+        el.body.applyImpulse(force, pos);
+        
+        //add event collision component when the pottery piece has been thrown
+        el.setAttribute("destroy-pottery", "");
+    }
+}
 
 AFRAME.registerComponent("destroy-pottery", {
     init: function(){
