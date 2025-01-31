@@ -32,7 +32,7 @@ const MODIFICATION_INSTRUCTIONS = "Use the sliders to shape your pot.\n(Pause th
 const PAUSE_INSTRUCTIONS = "Pause the wheel when you're happy with the shape of the pot.";
 const PICKUP_INSTRUCTIONS = "It's time to pick up your pot...";
 const THROW_INSTRUCTIONS = "And let it go. Double click anywhere on the wall, ceiling, or floor 😉";
-const REPEAT_INSTRUCTIONS = "Now. Repeat.";
+const REPEAT_INSTRUCTIONS = "Continue creating and destroying your pots.";
 
 //error text
 const CLAY_ERROR = "Uh oh. You can't create a new pot yet."

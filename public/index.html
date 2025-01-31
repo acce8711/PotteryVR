@@ -6,6 +6,7 @@
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.js"></script>
     
     <title>Pottery VR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
@@ -64,21 +65,27 @@
     </script>
 </head>
 <body>
-    <div id="sliders-overlay" style="display: none;" class="position-fixed">
-        <input onclick="printHello()"/>
-        <input id="slider1" type="range" min="0" max="0.1" step="0.01" value="0" style="width: 200px" oninput="taperTop(event)"/>
-        <input id="slider2" type="range" min="0" max="0.1" step="0.01" value="0" style="width: 200px" oninput="taperBottom(event)"/>
-        <input id="slider3" type="range" min="1" max="4" step="0.1" value="1" style="width: 200px" oninput="adjustHeight(event)"/>
-    </div>
-
-    <div id="instructions" class="flex-horizontal">
-        <div class="text-container position-fixed flex-horizontal default-colour">
+    <div id="ui-elements">
+        <div id="sliders-overlay" class="default-colour" style="display: none;">
+            <div class="slider-grp">
+                <label for="top-radius-slider">Top Radius</label>
+                <input id="top-radius-slider" class="slider" type="range" min="0" max="0.1" step="0.005" value="0"  oninput="taperTop(event)"/>
+            </div>
+            <div class="slider-grp">
+                <label for="bottom-radius-slider">Bottom Radius</label>
+                <input id="bottom-radius-slider" class="slider" type="range" min="0" max="0.1" step="0.005" value="0"  oninput="taperBottom(event)"/>
+            </div>
+            <div class="slider-grp">
+                <label for="height-slider">Height</label>
+                <input id="height-slider" class="slider" type="range" min="1" max="4" step="0.01" value="1"  oninput="adjustHeight(event)"/>
+            </div>
+        </div>
+    
+        <div id="instructions" class="text-container default-colour">
             <p id="instructions-text"></p>
         </div>
-    </div>
 
-    <div id="error" class="flex-horizontal" style="display: none;">
-        <div class="text-container position-fixed flex-horizontal error-colour">
+        <div id="error" class="text-container error-colour" style="display: none;">
             <p id="error-text"></p>
         </div>
     </div>
@@ -92,7 +99,7 @@
             <a-asset-item id="spinner_model" response-type="arraybuffer" src="assets/models/spinner/spinner.glb"></a-asset-item>
             <img id="test" src="assets/testTexture.png" crossorigin="anonymous"/>
         </a-assets>
-        <a-entity id="camera" camera="zoom: 1.5" look-controls position="-4.425 1.6 3.762" rotation="-17 90 0">
+        <a-entity id="camera" camera="zoom: 1.5" look-controls position="-4.4 1.6 3.6" rotation="-15 -55 0">
             <a-entity id="cursor" cursor="rayOrigin:mouse;" raycaster="far:20; interval:200; objects:.interactive"></a-entity>
         </a-entity>
 

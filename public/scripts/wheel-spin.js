@@ -21,7 +21,7 @@ AFRAME.registerComponent("wheel-spin", {
                     wheel.setAttribute("animation", {enabled: true, 
                                                     to: `0 ${destYRotation} 0`})
         
-                    potteryModificationUI.style.display = "block"
+                    potteryModificationUI.style.display = "flex"
                     
                     //once wheel is spinning, the manager value needs to be updated
                     manager.changeState(SPINNING, TRUE_STRING);

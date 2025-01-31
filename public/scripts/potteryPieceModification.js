@@ -3,6 +3,8 @@
 function taperTop(event) {
     const value = event.target.value;
 
+    //update slider fill
+    updateSliderFill(event.target.min, event.target.max, value, event.target.id);
     //update the top radius of outer cone
     setRadius("#outer-cone", OUTER_CONE_RADIUS, value, "radius-top"); 
     //update the top radius of inner cone 
@@ -17,6 +19,8 @@ function taperTop(event) {
 function taperBottom(event) {
     const value = event.target.value;
 
+    //update slider fill
+    updateSliderFill(event.target.min, event.target.max, value, event.target.id);
     //update the bottom radius of outer cone
     setRadius("#outer-cone", OUTER_CONE_RADIUS, value, "radius-bottom"); 
     //update the bottom radius of inner cone 
@@ -31,9 +35,22 @@ function taperBottom(event) {
 function adjustHeight(event) {
     const value = event.target.value;
 
+    //update slider fill
+    updateSliderFill(event.target.min, event.target.max, value, event.target.id);
     const shape = document.querySelector("#pottery-piece");
     const shapeHeight = POTTERY_PIECE_Y_SCALE * parseFloat(value);
     shape.object3D.scale.set(1, shapeHeight, 1);
+}
+
+//function to update the active slider fill
+const updateSliderFill = function(minValue, maxValue, value, id) {
+    // reference: 
+    // https://www.youtube.com/watch?v=EYyWzE1DWuY
+    // https://stackoverflow.com/questions/75589343/how-do-i-make-a-slider-in-html-that-fill-itself-in-behind-with-a-gradient
+    const progress = ((parseFloat(value) - parseFloat(minValue)) / (parseFloat(maxValue) - parseFloat(minValue))) * 100;
+    const slider = document.querySelector(`#${id}`);
+    console.log(progress, slider)
+    slider.style.background = `linear-gradient(to right, transparent ${progress}%, rgb(193, 205, 209) ${progress}%), linear-gradient(to right, rgb(61, 211, 245) 30%, rgb(15, 93, 211) 100%)`;
 }
 
 //function to update the cone and circle radius of the pottery piece

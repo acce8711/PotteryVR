@@ -24,6 +24,7 @@ AFRAME.registerComponent("manager", {
         this.hideIndicator = hideIndicator;
         this.changeState = changeState;
         this.handleIncorrectInteraction = handleIncorrectInteraction;
+        
 
         //init values
         Context_AF.instructionsTextContainer.innerText = CLAY_INSTRUCTIONS;
@@ -83,7 +84,7 @@ function changeState(propertyName, propertyValue) {
             if(propertyValue === FALSE_STRING)
             {
                 this.canCreate = TRUE_STRING;
-                this.instructionsTextContainer.innerText = CLAY_INSTRUCTIONS;
+                this.instructionsTextContainer.innerText = REPEAT_INSTRUCTIONS;
                 this.displayIndicator(CLAY_GUIDE_INFO);
             }
         default:
