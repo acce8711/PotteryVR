@@ -13,7 +13,6 @@
 
     <script src="scripts/pickup-pottery.js"></script>
     <script src="scripts/manager.js"></script>
-    <script src="scripts/place-piece.js"></script>
     <script src="scripts/potteryPieceModification.js"></script>
     <script src="scripts/wheel-spin.js"></script>
     <script src="scripts/constants.js"></script>
@@ -73,8 +72,14 @@
     </div>
 
     <div id="instructions" class="flex-horizontal">
-        <div id="text-container" class="position-fixed flex-horizontal">
-            Let's start off with placing some clay on the wheel ☺️
+        <div class="text-container position-fixed flex-horizontal default-colour">
+            <p id="instructions-text"></p>
+        </div>
+    </div>
+
+    <div id="error" class="flex-horizontal" style="display: none;">
+        <div class="text-container position-fixed flex-horizontal error-colour">
+            <p id="error-text"></p>
         </div>
     </div>
     
@@ -87,11 +92,20 @@
             <a-asset-item id="spinner_model" response-type="arraybuffer" src="assets/models/spinner/spinner.glb"></a-asset-item>
             <img id="test" src="assets/testTexture.png" crossorigin="anonymous"/>
         </a-assets>
-        <a-entity id="camera" camera="zoom: 1" wasd-controls look-controls position="0 1.6 4">
+        <a-entity id="camera" camera="zoom: 1.5" look-controls position="-4.425 1.6 3.762" rotation="-17 90 0">
             <a-entity id="cursor" cursor="rayOrigin:mouse;" raycaster="far:20; interval:200; objects:.interactive"></a-entity>
         </a-entity>
 
         <a-entity id="manager" manager throw-piece></a-entity>
+        <!-- Indicator for guiding the user interactions -->
+        <a-entity id="guide"
+                  geometry="primitive: ring"
+                  position="-3.2 0.97 2.4"
+                  rotation="-90 0 0"
+                  material="side:double; shader: flat; color: cyan; transparent: true; opacity: 0.7;"
+                  animation__radiusInner="property: geometry.radiusInner; from: 0.2; to: 0.22; loop:true; dir: alternate; dur:1000; easing:easeInQuad; enabled: true"
+                  animation__radiusOuter="property: geometry.radiusOuter; from: 0.22; to: 0.24; loop:true; dir: alternate; dur:1000; easing:easeInQuad; enabled: true">
+        </a-entity>
     
         <a-cylinder id="button" 
                     class="interactive" 
@@ -105,41 +119,41 @@
 
         <!-- invisible geometry for colliders -->
         <a-entity id="wall-z-negative" 
-                  geometry="primitive: plane; width:10.2; height: 3.4" 
+                  geometry="primitive: box; width:10.2; height: 3.4" 
                   obb-collider
                   position="0 1.8 -5.1"
                   material="transparent:true; opacity:0">
         </a-entity>
         <a-entity id="wall-x-negative" 
-                  geometry="primitive: plane; width:10.2; height: 3.4" 
+                  geometry="primitive: box; width:10.2; height: 3.4" 
                   obb-collider
                   position="-5.24 1.8 0"
                   rotation="0 90 0"
                   material="transparent:true; opacity:0">
         </a-entity>
         <a-entity id="wall-z-positive" 
-                  geometry="primitive: plane; width:10.2; height: 3.4" 
+                  geometry="primitive: box; width:10.2; height: 3.4" 
                   obb-collider
                   position="0 1.8 5.24"
                   rotation="0 180 0"
                   material="transparent:true; opacity:0">
         </a-entity>
         <a-entity id="wall-x-positive" 
-                  geometry="primitive: plane; width:10.2; height: 3.4" 
+                  geometry="primitive: box; width:10.2; height: 3.4" 
                   obb-collider
                   position="5.24 1.8 0"
                   rotation="0 270 0"
                   material="transparent:true; opacity:0">
         </a-entity>
         <a-entity id="floor" 
-                  geometry="primitive: plane; width:10.5; height: 10.5" 
+                  geometry="primitive: box; width:10.5; height: 10.5" 
                   obb-collider
                   position="0 0.011 0"
                   rotation="-90 0 0"
                   material="transparent:true; opacity:0">
         </a-entity>
         <a-entity id="ceiling" 
-                  geometry="primitive: plane; width:10.5; height: 10.5" 
+                  geometry="primitive: box; width:10.5; height: 10.5" 
                   obb-collider
                   position="0 3.6 0"
                   rotation="90 0 0"
@@ -156,12 +170,7 @@
                   rotation="0 0 0" 
                   scale="1.1 1.1 1.1" 
                   gltf-model="#spinner_model">
-            <a-entity geometry="primitive: ring; radiusInner: 0.18; radiusOuter: 0.2;"
-                      position="0 0.16 0"
-                      rotation="-90 0 0"
-                      material="side:double; shader: flat; color: cyan; emissive: cyan; emissive-intensity: 1.5"
-                      animation="property: geometry; type:radiusInner; from: 0.18; to: 0.16; loop:true; dur:1000; easing:linear;" >
-            </a-entity>
+            
         </a-entity>
         
         

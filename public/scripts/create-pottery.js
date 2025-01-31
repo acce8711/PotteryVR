@@ -6,15 +6,15 @@ AFRAME.registerComponent("create-pottery", {
       //using an arrow function for the event listener in order to be able to access the component's "this"
       this.el.addEventListener("click", () => {
 
-        const canCreate = document.querySelector("#manager").getAttribute("manager").canCreate;
-
-        if(canCreate)
+        const manager = document.querySelector('[manager]').components.manager;
+        if(manager.canCreate)
         {
             createPotteryPieceEntity();
             //once piece is created, the manager value needs to be updated
-            var manager = document.querySelector('[manager]').components.manager;
-            manager.updateSchemaProperty(CAN_CREATE, FALSE_STRING);
-            //console.log(document.querySelector("#manager").getAttribute("manager").canCreate)
+            manager.changeState(CAN_CREATE, FALSE_STRING);
+        }
+        else{
+          manager.handleIncorrectInteraction(CLAY_ERROR);
         }
       })
     },

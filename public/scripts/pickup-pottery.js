@@ -3,20 +3,21 @@ AFRAME.registerComponent("pickup-pottery", {
         this.invisibleCone = document.querySelector("#invisible-cone");
         const CONTEXT_AF = this;
         this.handleClick = function() {
-            const canPickUp = document.querySelector("#manager").getAttribute("manager").canPickUp;
-            console.log("canpickup", canPickUp)
-            if(canPickUp)
+            const manager = document.querySelector('[manager]').components.manager;
+            if(manager.canPickUp)
             {
                 const newParent = document.querySelector("#camera");
                 const child = CONTEXT_AF.el;
                 child.object3D.parent = newParent.object3D;
                 //CHANGE
-                child.setAttribute("position", "0.7 -0.5 -0.5");
+                child.setAttribute("position", "0.5 -0.5 -1");
                 child.setAttribute("rotation", "-45 0 0");
                 
                 //once piece is picked, the manager value needs to be updated
-                var manager = document.querySelector('[manager]').components.manager;
-                manager.updateSchemaProperty(CAN_PICKUP, FALSE_STRING);
+                manager.changeState(CAN_PICKUP, FALSE_STRING);
+            }
+            else {
+                manager.handleIncorrectInteraction(PICKUP_ERROR);
             }
         }
 

@@ -4,12 +4,12 @@ AFRAME.registerComponent("wheel-spin", {
       //using an arrow function for the event listener in order to be able to access the component's "this"
       this.el.addEventListener("click", () => {
 
-        const managerSchema = document.querySelector("#manager").getAttribute("manager")
-        const canSpin = managerSchema.canSpin;
-        console.log("canSpin", canSpin)
-        if(canSpin)
+        const manager = document.querySelector('[manager]').components.manager;
+        if(manager.canSpin)
         {
-            const spinning = managerSchema.spinning;
+            
+            const spinning = manager.spinning;
+            console.log(spinning)
             const wheel = document.querySelector("#wheel-spin")
             const potteryModificationUI = document.querySelector("#sliders-overlay")
 
@@ -24,8 +24,7 @@ AFRAME.registerComponent("wheel-spin", {
                     potteryModificationUI.style.display = "block"
                     
                     //once wheel is spinning, the manager value needs to be updated
-                    var manager = document.querySelector('[manager]').components.manager;
-                    manager.updateSchemaProperty(SPINNING, TRUE_STRING);
+                    manager.changeState(SPINNING, TRUE_STRING);
                 }
             //if the wheel is already spinning then stop it AND hide UI for modifying the pottery piece
             else
@@ -33,9 +32,11 @@ AFRAME.registerComponent("wheel-spin", {
                 wheel.setAttribute("animation", "enabled: false")
                 potteryModificationUI.style.display = "none"
                 //once wheel has stopped spinning, the manager value needs to be updated
-                var manager = document.querySelector('[manager]').components.manager;
-                manager.updateSchemaProperty(SPINNING, FALSE_STRING);
+                manager.changeState(SPINNING, FALSE_STRING);
             }
+        }
+        else {
+            manager.handleIncorrectInteraction(WHEEL_ERROR);
         }
       })
     }

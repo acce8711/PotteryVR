@@ -15,8 +15,8 @@ AFRAME.registerComponent("throw-piece", {
             const doubleClick = (currClick - Context_AF.lastClick) < 500;
             console.log(doubleClick)
             Context_AF.lastClick = currClick;
-            const canThrow = document.querySelector("#manager").getAttribute("manager").canThrow;
-            if(canThrow && doubleClick)
+            const manager = document.querySelector('[manager]').components.manager;
+            if(manager.canThrow && doubleClick)
             {
                 const potteryPiece = document.querySelector("#pottery-piece");
                 const worldPosition = new THREE.Vector3();
@@ -93,8 +93,8 @@ AFRAME.registerComponent("destroy-pottery", {
             wall.appendChild(particleContainer);
 
             //once piece is destroyed, the manager value needs to be updated
-            var manager = document.querySelector('[manager]').components.manager;
-            manager.updateSchemaProperty(CAN_THROW, FALSE_STRING);
+            const manager = document.querySelector('[manager]').components.manager;
+            manager.changeState(CAN_THROW, FALSE_STRING);
 
             Context_AF.el.parentNode.removeChild(Context_AF.el);
         }
