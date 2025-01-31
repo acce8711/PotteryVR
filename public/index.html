@@ -106,6 +106,10 @@
                   animation__radiusInner="property: geometry.radiusInner; from: 0.2; to: 0.22; loop:true; dir: alternate; dur:1000; easing:easeInQuad; enabled: true"
                   animation__radiusOuter="property: geometry.radiusOuter; from: 0.22; to: 0.24; loop:true; dir: alternate; dur:1000; easing:easeInQuad; enabled: true">
         </a-entity>
+        <!-- Particle system for indicating pottery breaking -->
+        <a-entity id="particle-container"
+                  particle-system="enabled: false; dragValue: 1, maxAge: 0.4; size: 0.2; particleCount: 150; duration: 0.1; accelerationValue: 0, -9.8, 0; velocityValue: 4 1 0; color: #80663b, #c7ad99; blending: 1; texture: assets/textures/triangle.png">
+        </a-entity>
     
         <a-cylinder id="button" 
                     class="interactive" 

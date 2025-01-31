@@ -65,32 +65,11 @@ AFRAME.registerComponent("destroy-pottery", {
             var worldPosition = new THREE.Vector3();
             Context_AF.el.object3D.getWorldPosition(worldPosition);
             
-
-            const particleContainer = document.createElement("a-entity");
-            particleContainer.id = "particle-container";
-            //particleContainer.object3D.rotation.x = THREE.MathUtils.degToRad(-90);
+            //trigger the particle when the piece hits a surface
+            const particleContainer = document.querySelector("#particle-container");
             particleContainer.object3D.position.set(worldPosition.x, worldPosition.y, worldPosition.z * 1.09);
-
-            const particleEffect = document.createElement("a-entity");
-            particleEffect.id = "particles";
-            particleEffect.setAttribute("particle-system", {
-                dragValue: "1",
-                maxAge: "0.4",
-                size: "0.2",
-                particleCount: "150",
-                duration: "0.1",
-                accelerationValue: "0, -9.8, 0",
-                velocityValue: "4 1 0",
-                color: "#80663b, #c7ad99",
-                blending: "1",
-                texture: "assets/textures/triangle.png"
-            });
-
-            
-            particleContainer.appendChild(particleEffect);
-            const wall = document.querySelector("#scene");
-            console.log(wall);
-            wall.appendChild(particleContainer);
+            particleContainer.setAttribute("particle-system", {enabled: false})
+            particleContainer.setAttribute("particle-system", {enabled: true, duration: "0.1"})
 
             //once piece is destroyed, the manager value needs to be updated
             const manager = document.querySelector('[manager]').components.manager;
