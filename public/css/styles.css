@@ -9,19 +9,49 @@
     z-index: 999999;
 } */
 
+.position-fixed {
+    position: fixed;
+}
+
+.flex-horizontal {
+    display: flex;
+    justify-content: center;
+}
+
+* {
+    font-family: "Quicksand", serif;
+    font-weight: 700;
+}
+
 #slider1 {
     cursor: pointer;
 }
 
 #sliders-overlay {
-    position: fixed;
+    
     display: block;
     width: 300px;
     height: 200px;
     top: 0;
     left: 0;
     background-color: rgba(162, 114, 114, 0.9);
-    z-index: 999999;
+    
     cursor: pointer;
   }
   
+  #instructions {
+    width: 100%;
+  }
+
+  #text-container {
+    z-index: 999999;
+    width: 80%;
+    height: 5%;
+    margin: 2%;
+    text-align: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: rgba(38, 34, 57, 0.8);
+    color: rgb(220, 220, 220);
+    cursor: pointer;
+  }
