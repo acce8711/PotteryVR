@@ -110,24 +110,21 @@
         <a-box scale="1 3 1"></a-box>
         <!-- invisible geometry for colliders -->
         <a-entity id="wall-z-negative" 
-                  class="interactive" 
                   geometry="primitive: plane; width:10.5; height: 3.7" 
                   position="0 1.7 -5.1"
                   emitCollisionEvents="true" 
                   ammo-body="type: static" 
                   ammo-shape="type: box">
         </a-entity>
-        <a-entity id="wall-x-negative" 
-                  class="interactive" 
+        <!-- <a-entity id="wall-x-negative" 
                   geometry="primitive: plane; width:10.5; height: 3.7" 
                   position="-5.25 1.7 0"
                   rotation="0 90 0"
                   emitCollisionEvents="true" 
                   ammo-body="type: static" 
                   ammo-shape="type: box">
-        </a-entity>
+        </a-entity> -->
         <a-entity id="wall-z-positive" 
-                  class="interactive" 
                   geometry="primitive: plane; width:10.5; height: 3.7" 
                   position="0 1.7 5.25"
                   rotation="0 180 0"
@@ -136,7 +133,6 @@
                   ammo-shape="type: box">
         </a-entity>
         <a-entity id="wall-x-positive" 
-                  class="interactive" 
                   geometry="primitive: plane; width:10.5; height: 3.7" 
                   position="5.25 1.7 0"
                   rotation="0 270 0"
@@ -152,7 +148,15 @@
                   ammo-body="type: static" 
                   ammo-shape="type: box">
         </a-entity>
-        <a-entity id="room" position="0 0.01 0" rotation="0 0 0" scale="1.2 1.2 1.2" gltf-model="#room_model"></a-entity>
+        <a-entity id="ceiling" 
+                  geometry="primitive: plane; width:10.5; height: 10.5" 
+                  position="0 3.7 0"
+                  rotation="90 0 0"
+                  emitCollisionEvents="true" 
+                  ammo-body="type: static" 
+                  ammo-shape="type: box">
+        </a-entity>
+        <a-entity class="interactive" id="room" position="0 0.01 0" rotation="0 0 0" scale="1.2 1.2 1.2" gltf-model="#room_model"></a-entity>
         <a-entity class="interactive" id="furniture" position="0 0.01 0" rotation="0 0 0" scale="1 1 1" gltf-model="#scene_model"></a-entity>
         <a-entity class="interactive" id="clay" create-pottery class="interactive" position="-3.2 0.95 2.4" rotation="0 0 0" gltf-model="#clay_model"></a-entity>
         <a-entity id="wheel-spin"
