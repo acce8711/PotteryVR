@@ -1,14 +1,13 @@
 
-//component for starting and pausing the wheel spin AND showing or hiding the pottery modification UI
+//component for creating a pottery piece
 AFRAME.registerComponent("create-pottery", {
-
     init: function () {
-      //using an arrow function for the event listener in order to be able to access the component's "this"
-      this.el.addEventListener("click", () => {
+      const Context_AF = this;
 
+      Context_AF.el.addEventListener("click", function(){
         const manager = document.querySelector('[manager]').components.manager;
-        if(manager.canCreate)
-        {
+        if(manager.canCreate){
+            //creating the pottery piece element and appending to the wheel
             createPotteryPieceEntity();
             //once piece is created, the manager value needs to be updated
             manager.changeState(CAN_CREATE, FALSE_STRING);
@@ -21,7 +20,7 @@ AFRAME.registerComponent("create-pottery", {
 });
 
 const createPotteryPieceEntity = function(){
-    
+  
     const wheelEl = document.querySelector("#wheel-spin");
 
     //create pottery piece parent entity

@@ -1,20 +1,16 @@
 models
 
 room
-
+https://sketchfab.com/3d-models/showcasing-gallery-room-770ed49cada347c0973cf81069433b89
 
 stool
 https://sketchfab.com/3d-models/basic-low-poly-stool-5e080b9eb7c24c9890c79b79872344fe#download
 
-plant 1
+plants
 https://sketchfab.com/3d-models/plant-01-7634f725264442c4995ef921af1860c9
-plant 2 
 https://sketchfab.com/3d-models/low-poly-plant-in-a-pot-e3a4d0c168954ced9e3702c14b986046
-plant 3
 https://sketchfab.com/3d-models/small-plant-in-a-pot-1c44dd662e1447e28890a75ca6d9507e
-plant 4
 https://sketchfab.com/3d-models/low-poly-modern-potted-plant-cd63602b8af7434f85082c4562ec0a23
-plant 5
 https://sketchfab.com/3d-models/potted-plant-household-props-26-0e3a892a477248779edb6b685446e64a
 https://sketchfab.com/3d-models/low-poly-style-plant-f4d845cddae04bf692bc9a9245524de1
 https://sketchfab.com/3d-models/potted-plant-household-props-challenge-day-26-4176123e70e44426be3ba0e65587af90

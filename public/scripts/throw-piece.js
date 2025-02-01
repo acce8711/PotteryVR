@@ -1,21 +1,18 @@
+//component handles the physics behind throwing the pottery piece
 AFRAME.registerComponent("throw-piece", {
     init: function(){
-        scene.addEventListener("collidestart", function(){
-            console.log("collision occuring")
-        })
-
         const Context_AF = this;
         Context_AF.lastClick = new Date();
         Context_AF.room = document.querySelector("#room");
-        Context_AF.furniture = document.querySelector("#furniture");
         Context_AF.cursorPos = {x: 0, y: 0, z: 0};
-        Context_AF.aimClickHandler = function (event)
-        {
+        Context_AF.aimClickHandler = function (event){
+            //check for a double click
             const currClick = new Date();
             const doubleClick = (currClick - Context_AF.lastClick) < 500;
-            console.log(doubleClick)
             Context_AF.lastClick = currClick;
+
             const manager = document.querySelector('[manager]').components.manager;
+
             if(manager.canThrow && doubleClick)
             {
                 const potteryPiece = document.querySelector("#pottery-piece");
@@ -53,38 +50,3 @@ AFRAME.registerComponent("throw-piece", {
     },
 }
 )
-
-
-
-AFRAME.registerComponent("destroy-pottery", {
-    init: function(){
-        console.log("throwing")
-        const Context_AF = this;
-        Context_AF.collideHandler = function() {
-            
-            var worldPosition = new THREE.Vector3();
-            Context_AF.el.object3D.getWorldPosition(worldPosition);
-            
-            //trigger the particle when the piece hits a surface
-            const particleContainer = document.querySelector("#particle-container");
-            particleContainer.object3D.position.set(worldPosition.x, worldPosition.y, worldPosition.z * 1.09);
-            particleContainer.setAttribute("particle-system", {enabled: false})
-            particleContainer.setAttribute("particle-system", {enabled: true, duration: "0.1"});
-
-            //once piece is destroyed, the manager value needs to be updated
-            const manager = document.querySelector('[manager]').components.manager;
-            manager.changeState(CAN_THROW, FALSE_STRING);
-
-            Context_AF.el.parentNode.removeChild(Context_AF.el);
-        }
-
-        Context_AF.el.addEventListener("obbcollisionstarted", Context_AF.collideHandler);
-        const scene = document.querySelector("#scene");
-        
-    },
-    remove: function() {
-        console.log("I am being removed :(")
-        this.el.removeEventListener("obbcollisionstarted", this.collideHandler);
-        
-    }
-}) 

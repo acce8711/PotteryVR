@@ -1,4 +1,3 @@
-
 //function to taper the top of the pottery piece
 function taperTop(event) {
     const value = event.target.value;
@@ -42,14 +41,13 @@ function adjustHeight(event) {
     shape.object3D.scale.set(1, shapeHeight, 1);
 }
 
-//function to update the active slider fill
+//function to update the currently active slider fill
 const updateSliderFill = function(minValue, maxValue, value, id) {
     // reference: 
     // https://www.youtube.com/watch?v=EYyWzE1DWuY
     // https://stackoverflow.com/questions/75589343/how-do-i-make-a-slider-in-html-that-fill-itself-in-behind-with-a-gradient
     const progress = ((parseFloat(value) - parseFloat(minValue)) / (parseFloat(maxValue) - parseFloat(minValue))) * 100;
     const slider = document.querySelector(`#${id}`);
-    console.log(progress, slider)
     slider.style.background = `linear-gradient(to right, transparent ${progress}%, rgb(193, 205, 209) ${progress}%), linear-gradient(to right, rgb(61, 211, 245) 30%, rgb(15, 93, 211) 100%)`;
 }
 
@@ -60,7 +58,7 @@ const setRadius = function(shapeID, initialRadius, sliderRadius, componentName) 
     shape.setAttribute(componentName, radius);
 }
 
-//function to update the ring radiuss
+//function to update the ring radius
 const setRingRadius = function(shapeID, initialInnerRadius, initialOuterRadius, sliderRadius) {
     const shape = document.querySelector(shapeID);
     const innerRadius = initialInnerRadius + parseFloat(sliderRadius);
