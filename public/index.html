@@ -22,50 +22,29 @@
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-particle-system-component@1.2.0/dist/aframe-particle-system-component.min.js"></script>
     
     <script>
+        AFRAME.registerComponent('start-experience', {
+          init: function () {
+            //we can't play sound on some browsers until we have some user interaction
+            //this means we should only start playing ambient music after this button is clicked
+            console.log('scene loaded');
+            document.querySelector('#user-gesture-button').style.display='block';
+          }
+        });
         
-        //create a component that will represent the pottery piece
-        AFRAME.registerComponent("pottery-modification", {
-            schema: {
-                radiusTop: {type: "number", default: 0.5},
-                radiusBottom: {type: "number", default: 0.5},
-                height: {type: "number", default: 1},
-                thickness: {type: "number", default: 0.02}
-            },
-            init: function () {
-                var data = this.data    //get the component properties and their values
-                var el = this.el        //get the element the component is attached to 
-            }
-        })
-
-        AFRAME.registerComponent("radius-slider", {
-            schema: {
-                dragging: {type: "boolean", default: "false"}
-            },
-            init: function() {
-                console.log(this.data)
-
-                //listen for when the radius changes
-                this.el.addEventListener("mousedown", function(event) {
-                    console.log(event)
-                    event.srcElement.setAttribute("radius-slider", "dragging: true")
-                })
-
-                this.el.addEventListener("mouseup", function(event) {
-                    console.log(event)
-                    event.srcElement.setAttribute("radius-slider", "dragging: false")
-                })
-            },
-            update: function(oldData) {
-                console.log(this.data)
-            }
-        })
-
-        
-       
+        //function called from user-gesture click
+        const startExperience = function() {
+          //hide user-gesture overlay
+          document.querySelector('#user-gesture-overlay').style.display='none';
+          document.querySelector('#ui-elements').style.display='flex';
+          
+          //start all ambient music
+          const ambientSound = document.querySelector('[sound__ambient]');
+          ambientSound.components.sound__ambient.playSound();
+        }
     </script>
 </head>
 <body>
-    <div id="ui-elements">
+    <div id="ui-elements" style="display: none;">
         <div id="sliders-overlay" class="default-colour" style="display: none;">
             <div class="slider-grp">
                 <label for="top-radius-slider">Top Radius</label>
@@ -80,7 +59,7 @@
                 <input id="height-slider" class="slider" type="range" min="1" max="4" step="0.01" value="1"  oninput="adjustHeight(event)"/>
             </div>
         </div>
-    
+
         <div id="instructions" class="text-container default-colour">
             <p id="instructions-text"></p>
         </div>
@@ -89,21 +68,39 @@
             <p id="error-text"></p>
         </div>
     </div>
+
+    <div id="user-gesture-overlay">
+        <div class="center">
+          <button id="user-gesture-button" onclick="startExperience();">enter experience</button>
+        </div>
+    </div>
     
-    <a-scene obb-collider="showColliders: false"  id="scene" physics="driver: ammo; debug: true; debugDrawMode: 1;">
+    <a-scene obb-collider="showColliders: false"  id="scene" physics="driver: ammo; debug: false; debugDrawMode: 1;">
         <!-- loading in the assets -->
         <a-assets timeOut="10000">
+            <audio id="room_ambience" src="assets/sounds/room-ambience.mp3" preload="auto" crossorigin="anonymous"></audio>
+            <audio id="clay_place" src="assets/sounds/clay-slap.mp3" preload="auto" crossorigin="anonymous"></audio>
+            <audio id="button_sound" src="assets/sounds/button-press.mp3" preload="auto" crossorigin="anonymous"></audio>
+            <audio id="wheel_sound" src="assets/sounds/wheel-spin-cut.mp3" preload="auto" crossorigin="anonymous"></audio>
+            <audio id="pickUp_sound" src="assets/sounds/pick-up.mp3" preload="auto" crossorigin="anonymous"></audio>
+            <audio id="smash_sound" src="assets/sounds/clay-smash2.mp3" preload="auto" crossorigin="anonymous"></audio>
             <a-asset-item id="room_model" response-type="arraybuffer" src="assets/models/room.glb"></a-asset-item>
             <a-asset-item id="scene_model" response-type="arraybuffer" src="assets/models/furniture.glb"></a-asset-item>
             <a-asset-item id="clay_model" response-type="arraybuffer" src="assets/models/clay.glb"></a-asset-item>
-            <a-asset-item id="spinner_model" response-type="arraybuffer" src="assets/models/spinner/spinner.glb"></a-asset-item>
+            <a-asset-item id="spinner_model" response-type="arraybuffer" src="assets/models/spinner.glb"></a-asset-item>
             <img id="test" src="assets/testTexture.png" crossorigin="anonymous"/>
         </a-assets>
         <a-entity id="camera" camera="zoom: 1.5" look-controls position="-4.4 1.6 3.6" rotation="-15 -55 0">
             <a-entity id="cursor" cursor="rayOrigin:mouse;" raycaster="far:20; interval:200; objects:.interactive"></a-entity>
         </a-entity>
 
-        <a-entity id="manager" manager throw-piece></a-entity>
+        <a-entity class="ambient-sound" sound__ambient="src:#room_ambience; loop:true"></a-entity>
+
+        <a-entity id="manager"
+                  manager 
+                  throw-piece 
+                  sound__smash="src:#smash_sound;">
+        </a-entity>
         <!-- Indicator for guiding the user interactions -->
         <a-entity id="guide"
                   geometry="primitive: ring"
@@ -115,7 +112,7 @@
         </a-entity>
         <!-- Particle system for indicating pottery breaking -->
         <a-entity id="particle-container"
-                  particle-system="enabled: false; dragValue: 1, maxAge: 0.4; size: 0.2; particleCount: 150; duration: 0.1; accelerationValue: 0, -9.8, 0; velocityValue: 4 1 0; color: #80663b, #c7ad99; blending: 1; texture: assets/textures/triangle.png">
+                  particle-system="enabled: false; dragValue: 1, maxAge: 0.4; size: 0.2; particleCount: 150; duration: 0.1; accelerationValue: 0, -9.8, 0; velocityValue: 4 1 0; color: #bd744a, #c29276; blending: 1; texture: assets/textures/triangle.png">
         </a-entity>
     
         <a-cylinder id="button" 
@@ -125,7 +122,9 @@
                     radius="0.08" 
                     color="#6b60be" 
                     animation="property: position; from:-3.031 0.95 3.163; to:-3.031 1 3.163; dur:200; startEvents: click;"
-                    wheel-spin></a-cylinder>
+                    sound__button="src:#button_sound; volume: 0.2; on:click"
+                    wheel-spin>
+        </a-cylinder>
 
 
         <!-- invisible geometry for colliders -->
@@ -175,13 +174,13 @@
         <a-entity class="interactive" id="furniture" position="0 0.01 0" rotation="0 0 0" scale="1 1 1" gltf-model="#scene_model"></a-entity>
         <a-entity class="interactive" id="clay" create-pottery class="interactive" position="-3.2 0.95 2.4" rotation="0 0 0" gltf-model="#clay_model"></a-entity>
         <a-entity id="wheel-spin"
-                  animation="property: rotation; loop:true; dur:1000; easing:linear; enabled: false" 
+                  animation="property: rotation; loop:true; dur:100; easing:linear; enabled: false" 
                   class="interactive" 
                   position="-3.3 0.8 2.86" 
                   rotation="0 0 0" 
                   scale="1.1 1.1 1.1" 
-                  gltf-model="#spinner_model">
-            
+                  gltf-model="#spinner_model"
+                  sound__wheel="src:#wheel_sound; loop:true; volume: 0.2">
         </a-entity>
         
         

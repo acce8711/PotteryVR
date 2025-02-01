@@ -28,7 +28,15 @@ const createPotteryPieceEntity = function(){
     const potteryPieceEl = document.createElement("a-entity");
     potteryPieceEl.object3D.position.set(0, WHEEL_HEIGHT + Y_OFFSET, 0);
     potteryPieceEl.id = "pottery-piece"
-    potteryPieceEl.setAttribute("pickup-pottery", "");
+    potteryPieceEl.setAttribute("pickup-pottery", {});
+    potteryPieceEl.setAttribute("sound", {src: "#clay_place",
+                                          autoplay: true});
+    potteryPieceEl.setAttribute("animation", {property: "position",
+                                              from: `0 ${WHEEL_HEIGHT + 0.1} 0`,
+                                              to: `0 ${WHEEL_HEIGHT + Y_OFFSET} 0`,
+                                              dur: 300,
+                                              easing: "easeInQuart"
+    })
 
     //create outer cone entity
     const outerConeEl = document.createElement("a-cone");

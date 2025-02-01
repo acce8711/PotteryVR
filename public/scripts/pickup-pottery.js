@@ -6,6 +6,9 @@ AFRAME.registerComponent("pickup-pottery", {
             const manager = document.querySelector('[manager]').components.manager;
             if(manager.canPickUp)
             {
+                CONTEXT_AF.el.setAttribute("sound", {src: "#pickUp_sound",
+                                                    autoplay: true});
+                CONTEXT_AF.el.setAttribute
                 const newParent = document.querySelector("#camera");
                 const child = CONTEXT_AF.el;
                 child.object3D.parent = newParent.object3D;

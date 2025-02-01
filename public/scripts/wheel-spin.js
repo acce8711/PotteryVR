@@ -3,11 +3,9 @@ AFRAME.registerComponent("wheel-spin", {
     init: function () {
       //using an arrow function for the event listener in order to be able to access the component's "this"
       this.el.addEventListener("click", () => {
-
         const manager = document.querySelector('[manager]').components.manager;
         if(manager.canSpin)
         {
-            
             const spinning = manager.spinning;
             console.log(spinning)
             const wheel = document.querySelector("#wheel-spin")
@@ -16,6 +14,9 @@ AFRAME.registerComponent("wheel-spin", {
             //begin wheel spin AND display the UI for modifying the pottery piece
             if(!spinning)
                 {
+                    const wheelSound = document.querySelector('[sound__wheel]');
+                    console.log("wheel sound", wheelSound.components.sound__wheel)
+                    wheelSound.components.sound__wheel.playSound();
                     const currRotation = wheel.getAttribute("rotation");
                     const destYRotation = currRotation.y + WHEEL_ROTATION_ANGLE;
                     wheel.setAttribute("animation", {enabled: true, 
@@ -29,6 +30,8 @@ AFRAME.registerComponent("wheel-spin", {
             //if the wheel is already spinning then stop it AND hide UI for modifying the pottery piece
             else
             {
+                const wheelSound = document.querySelector('[sound__wheel]');
+                wheelSound.components.sound__wheel.stopSound();
                 wheel.setAttribute("animation", "enabled: false")
                 potteryModificationUI.style.display = "none"
                 //once wheel has stopped spinning, the manager value needs to be updated

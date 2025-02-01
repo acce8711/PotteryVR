@@ -69,7 +69,7 @@ AFRAME.registerComponent("destroy-pottery", {
             const particleContainer = document.querySelector("#particle-container");
             particleContainer.object3D.position.set(worldPosition.x, worldPosition.y, worldPosition.z * 1.09);
             particleContainer.setAttribute("particle-system", {enabled: false})
-            particleContainer.setAttribute("particle-system", {enabled: true, duration: "0.1"})
+            particleContainer.setAttribute("particle-system", {enabled: true, duration: "0.1"});
 
             //once piece is destroyed, the manager value needs to be updated
             const manager = document.querySelector('[manager]').components.manager;

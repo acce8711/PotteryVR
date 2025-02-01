@@ -1,33 +1,36 @@
 AFRAME.registerComponent("manager", {
     init: function() {
-        //event listeners for different colliders 
-        const Context_AF = this;
 
         this.canCreate = true;
 
-        Context_AF.canSpin = false;
-        Context_AF.spinning = false;
-        Context_AF.canPickUp = false;
-        Context_AF.canThrow = false;
+        this.canSpin = false;
+        this.spinning = false;
+        this.canPickUp = false;
+        this.canThrow = false;
 
-        Context_AF.instructionsContainer = document.querySelector("#instructions");
-        Context_AF.instructionsTextContainer = document.querySelector("#instructions-text");
-        Context_AF.errorContainer = document.querySelector("#error");
-        Context_AF.errorTextContainer = document.querySelector("#error-text");
+        this.instructionsContainer = document.querySelector("#instructions");
+        this.instructionsTextContainer = document.querySelector("#instructions-text");
+        this.errorContainer = document.querySelector("#error");
+        this.errorTextContainer = document.querySelector("#error-text");
 
-        Context_AF.clay = document.querySelector(CLAY);
-        Context_AF.button = document.querySelector(BUTTON);
-        Context_AF.guideIndicator = document.querySelector(GUIDE);
+        this.clay = document.querySelector(CLAY);
+        this.button = document.querySelector(BUTTON);
+        this.guideIndicator = document.querySelector(GUIDE);
 
-        
+        this.smashSound = document.querySelector('[sound__smash]');
+
+        this.topRadiusSlider = document.querySelector("#top-radius-slider");
+        this.bottomRadiusSlider = document.querySelector("#bottom-radius-slider");
+        this.heightSlider = document.querySelector("#height-slider");
+
         this.displayIndicator = displayIndicator;
         this.hideIndicator = hideIndicator;
         this.changeState = changeState;
         this.handleIncorrectInteraction = handleIncorrectInteraction;
-        
+        this.resetSliderValues = resetSliderValues;
 
         //init values
-        Context_AF.instructionsTextContainer.innerText = CLAY_INSTRUCTIONS;
+        this.instructionsTextContainer.innerText = CLAY_INSTRUCTIONS;
         
     }
 });
@@ -49,6 +52,10 @@ function changeState(propertyName, propertyValue) {
             {
                 this.canSpin = TRUE_STRING;
                 this.instructionsTextContainer.innerText = WHEEL_INSTRUCTIONS;
+                // this.button.setAttribute("animation", {enabled: true});
+                // this.button.setAttribute("sound", {src: "#button-press",
+                //                                   on: "click",
+                //                                 volume: });
                 this.displayIndicator(BUTTON_GUIDE_INFO);
             }
             break;
@@ -59,6 +66,8 @@ function changeState(propertyName, propertyValue) {
                 this.canThrow = TRUE_STRING;
                 this.canSpin = FALSE_STRING;
                 this.instructionsTextContainer.innerText = THROW_INSTRUCTIONS;
+                // this.button.setAttribute("animation", {enabled: false});
+                // this.button.removeAttribute("sound");
                 this.hideIndicator();
             }
             break;
@@ -69,7 +78,7 @@ function changeState(propertyName, propertyValue) {
             {
                 this.canPickUp = FALSE_STRING;
                 this.instructionsTextContainer.innerText = MODIFICATION_INSTRUCTIONS;
-                this.hideIndicator();
+                this.displayIndicator(BUTTON_GUIDE_INFO);
             }
             //if spinning stopped then canPickup needs to be enabled
             else
@@ -85,7 +94,9 @@ function changeState(propertyName, propertyValue) {
             {
                 this.canCreate = TRUE_STRING;
                 this.instructionsTextContainer.innerText = REPEAT_INSTRUCTIONS;
+                this.smashSound.components.sound__smash.playSound();
                 this.displayIndicator(CLAY_GUIDE_INFO);
+                this.resetSliderValues();
             }
         default:
             break;
@@ -120,4 +131,14 @@ function hideIndicator() {
     this.guideIndicator.setAttribute("material", {visible: false});
     this.guideIndicator.setAttribute("animation__radiusInner", {enabled: false});
     this.guideIndicator.setAttribute("animation__radiusOuter", {enabled: false});
+}
+
+function resetSliderValues() {
+    console.log("reset")
+    this.topRadiusSlider.value = "0";
+    this.topRadiusSlider.style.background = "#c1cdd1";
+    this.bottomRadiusSlider.value = "0";
+    this.bottomRadiusSlider.style.background = "#c1cdd1";
+    this.heightSlider.value = "1";
+    this.heightSlider.style.background = "#c1cdd1";
 }
