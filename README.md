@@ -117,3 +117,6 @@ This experience is not currently hosted. In the meantime, you can run it locally
 - [Birds in the Morning](https://pixabay.com/sound-effects/beautiful-morning-with-birds-chanting-208999/)  
 - [Room Ambience](https://pixabay.com/sound-effects/room-71897/)
 
+## 📚 Credits
+
+This project was developed as part of a third-year design studio course in the [Interactive Multimedia and Design](https://bitdegree.ca/index.php?Program=IMD&Section=Home) program.
