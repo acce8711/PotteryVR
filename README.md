@@ -27,10 +27,9 @@ This experience is not currently hosted. In the meantime, you can run it locally
 
 1. Install [Git](https://git-scm.com/downloads)  
 2. Install [Node.js](https://nodejs.org/en/download)  
-3. Open your terminal and run the following command (make sure Git is installed):
-   `git clone https://github.com/acce8711/PotteryVR.git
-   cd PotteryVR`
-4. Open the cloned project in VS Code or stay in your terminal
+3. Open your terminal and run the following commands (make sure Git is installed):
+   `git clone https://github.com/acce8711/PotteryVR.git`
+   `cd PotteryVR`
 5. Run the following command in the terminal: `npm install`
 6. Run the following command in the terminal: `node .\app.js`
 7. In your browser, go to the `http://localhost:8080` URL
