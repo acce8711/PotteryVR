@@ -21,7 +21,7 @@ This experience supports both desktop and mobile devices.
 - Node.js  
 - [A-Frame](https://aframe.io/)
 
-## Setup Instructions
+## Desktop Setup Instructions
 
 This experience is not currently hosted. In the meantime, you can run it locally by following the steps below:
 
