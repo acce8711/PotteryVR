@@ -21,19 +21,35 @@ This experience supports both desktop and mobile devices.
 - Node.js  
 - [A-Frame](https://aframe.io/)
 
-## Desktop Setup Instructions
+## 🧾Desktop Setup Instructions
 
-This experience is not currently hosted. In the meantime, you can run it locally by following the steps below:
+This project is not hosted online at the moment. In the meantime, you can run it locally by following the steps below:
 
 1. Download and install [Git](https://git-scm.com/downloads)  
-2. Download and install [Node.js](https://nodejs.org/en/download)  
-3. Open your terminal and run the following commands (make sure Git is installed):
+3. Download and install [Node.js](https://nodejs.org/en/download)  
+4. Open your terminal and run the following commands to clone the repository and navigate to it:
    - `git clone https://github.com/acce8711/PotteryVR.git`
    - `cd PotteryVR`
+5. Run the following commands in the same terminal to start the server:
    - `npm install`
-   - `node .\app.js`
-7. In your browser, go to the `http://localhost:8080` URL
-8. You're all set! Click to start the expereince and follow the instructions in the displayed guiding text.
+   - `node app.js`
+6. In your browser, go to the `http://localhost:8080` URL
+7. You're all set! Click to start the experience and follow the instructions in the displayed guiding text.
+
+## 🧾Mobile Setup Instructions (Using Ngrok)
+Running the project on your computer alone won’t let you open it on your phone. You need a tool called a tunnel to share your project on the internet. Below are steps to set up an ngrok tunnel to do this:
+
+1. Complete steps 1-6 from **Desktop Setup Instructions**
+2. Create an [Ngrok](https://dashboard.ngrok.com/get-started/setup/windows) account.
+3. Open a new terminal and install ngrok by following the instructions on the Ngrok web dashboard under Getting started --> Setup & Installation.
+   
+   ![image](https://github.com/user-attachments/assets/495bde99-8b49-44c5-8431-546d91d6d812)
+    **Windows users**: Make sure to open a new terminal as administrator
+4. Create an ngrok tunnel to share your local server on the internet by running these commands in the **same terminal window you opened in step 3**:
+   - `./ngrok.exe config add-authtoken {your Authtoken}` (Your authoken should be visible on the Ngrok web dashboard under Getting started --> Setup & Installation)
+   - `./ngrok.exe http http://localhost:8080`
+5. Open the experience on your phone by clicking the link that the commands from step 4 generate. The link should end with `ngrok-free.app`
+6. You're all set! Click to start the experience and follow the instructions in the displayed guiding text.
 
 ## 🎨 Assets and Attributions
 
