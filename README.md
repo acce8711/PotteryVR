@@ -34,14 +34,14 @@ This project is not hosted online at the moment. In the meantime, you can run it
    - `npm install`
    - `node app.js`
 6. In your browser, go to the `http://localhost:8080` URL
-7. You're all set! Click to start the experience and follow the instructions in the displayed guiding text.
+7. You're all set! Click to start the experience and follow the instructions in the displayed guiding text
 
 ## 🧾Mobile Setup Instructions (Using Ngrok)
-Running the project on your computer alone won’t let you open it on your phone. You need a tool called a tunnel to share your project on the internet. Below are steps to set up an ngrok tunnel to do this:
+Running the project on your computer alone won’t let you open it on your phone. You need a tool called a tunnel to generate a link that you can open on your phone. Below are steps to set up an ngrok tunnel to do this:
 
 1. Complete steps 1-6 from **Desktop Setup Instructions**
-2. Create an [Ngrok](https://dashboard.ngrok.com/get-started/setup/windows) account.
-3. Open a new terminal and install ngrok by following the instructions on the Ngrok web dashboard under Getting started --> Setup & Installation.
+2. Create an [Ngrok](https://dashboard.ngrok.com/get-started/setup/windows) account
+3. Open a new terminal and install ngrok by following the instructions on the Ngrok web dashboard under Getting started --> Setup & Installation
    
    ![image](https://github.com/user-attachments/assets/495bde99-8b49-44c5-8431-546d91d6d812)
    
@@ -50,7 +50,7 @@ Running the project on your computer alone won’t let you open it on your phone
    - `./ngrok.exe config add-authtoken {your Authtoken}` (Your authoken should be visible on the Ngrok web dashboard under Getting started --> Setup & Installation)
    - `./ngrok.exe http http://localhost:8080`
 6. Open the experience on your phone by clicking the link that the commands from step 4 generate. The link should end with `ngrok-free.app`
-7. You're all set! Click to start the experience and follow the instructions in the displayed guiding text.
+7. You're all set! Click to start the experience and follow the instructions in the displayed guiding text
 
 ## 🎨 Assets and Attributions
 
