@@ -136,4 +136,4 @@ Running the project on your computer alone won’t let you open it on your phone
 
 ## 📚 Credits
 
-This project was developed as part of a third-year design studio course in the [Interactive Multimedia and Design](https://bitdegree.ca/index.php?Program=IMD&Section=Home) program.
+This project was developed as part of a third-year design studio course (IMD3901B) in the [Interactive Multimedia and Design](https://bitdegree.ca/index.php?Program=IMD&Section=Home) program.
