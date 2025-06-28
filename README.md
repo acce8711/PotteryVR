@@ -54,7 +54,7 @@ Running the project on your computer alone won’t let you open it on your phone
 
 ## 🎨 Assets and Attributions
 
-
+See the full list of assets used in this project in the [ASSETS.md](./ASSETS.md) file.
 
 ## 📚 Credits
 
