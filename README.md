@@ -3,7 +3,7 @@
 A pottery-destroying experience that explores emotional attachment to art, or simply lets you break some stuff.
 
 ## Demo
-[![PotteryVr Video](https://github.com/user-attachments/assets/6376818f-c9a5-4126-b172-8ac306f1ca1d)](https://youtu.be/kDufIwOcaGI)
+[![PotteryVr Video](https://github.com/user-attachments/assets/6376818f-c9a5-4126-b172-8ac306f1ca1d)](https://youtu.be/zZmXvIQ1kG0)
 
 ## Overview
 
