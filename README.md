@@ -2,6 +2,9 @@
 
 A pottery-destroying experience that explores emotional attachment to art, or simply lets you break some stuff.
 
+## Demo
+[![PotteryVr Video](https://github.com/user-attachments/assets/6376818f-c9a5-4126-b172-8ac306f1ca1d)](https://youtu.be/kDufIwOcaGI)
+
 ## Overview
 
 This project was created as part of a two-week solo assignment for a third-year design studio course, where our objective was to create a VR experience to get familiar with the [A-Frame](https://aframe.io/) framework. 
