@@ -50,8 +50,8 @@ Running the project on your computer alone won’t let you open it on your phone
    
     **Windows users**: Make sure to open a new terminal as administrator
 5. Create an ngrok tunnel to share your local server on the internet by running these commands in the **same terminal window you opened in step 3**:
-   - `./ngrok.exe config add-authtoken {your Authtoken}` (Your authoken should be visible on the Ngrok web dashboard under Getting started --> Setup & Installation)
-   - `./ngrok.exe http http://localhost:8080`
+   - `ngrok config add-authtoken {your Authtoken}` (Your authoken should be visible on the Ngrok web dashboard under Getting started --> Setup & Installation)
+   - `ngrok http http://localhost:8080`
 6. Open the experience on your phone by clicking the link that the commands from step 4 generate. The link should end with `ngrok-free.app`
 7. You're all set! Click to start the experience and follow the instructions in the displayed guiding text
 
